@@ -31,11 +31,13 @@ function CreateTree($data,$parent_id=0,$level=1){
         }
         return $new_arr;
     }
-    function files($name)
-{
-    if ( request()->file($name)->isValid()) {
-        $photo = request()->file($name);
-        $store_result = $photo->store('', 'public');
-        return $store_result;
+//    文件上传
+        function files($name)
+    {
+        if ( request()->file($name)->isValid()) {
+            $photo = request()->file($name);
+            $store_result = $photo->store('', 'public');
+            return $store_result;
+        }
     }
-}
+//获取token
