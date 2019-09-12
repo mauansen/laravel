@@ -126,5 +126,6 @@ Route::get('index/getidlist','TagController@getidlist');
 //文件上传
 Route::get('index/uplode','StudentController@uplode');
 Route::post('index/uplode_do','StudentController@uplode_do');
-
+//接口
+Route::any('index/envet','PortController@envet');
 
