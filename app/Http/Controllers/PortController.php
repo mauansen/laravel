@@ -8,7 +8,6 @@ class PortController extends Controller
 {
     public function envet()
     {
-//        echo $GET['echostr'];
-        echo 123;
+        echo $GET['echostr'];
     }
 }
