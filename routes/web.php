@@ -128,4 +128,12 @@ Route::get('index/uplode','StudentController@uplode');
 Route::post('index/uplode_do','StudentController@uplode_do');
 //接口
 Route::any('index/envet','PortController@envet');
+//微信周考
+Route::get('practise/login','GroupController@login');
+Route::get('practise/wechat_login','GroupController@wechat_login');
+Route::get('practise/code','GroupController@code');
+Route::prefix('practise')->middleware('practise')->group(function () {
+    Route::get('user_tag','GroupController@user_tag');
+    Route::post('send','GroupController@send');
+});
 
