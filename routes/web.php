@@ -1,4 +1,4 @@
-<?php
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +15,7 @@ Route::get('studen/add', 'UserController@studen');
 Route::post('studen/studenadd_do', 'UserController@studenadd_do')->name('do');
 Route::get('studen/lists', 'UserController@lists');
 Route::get('studen/mali', 'MailController@index');
-// 
+//
 // 考试学生
 Route::get('studen/save', 'StudentController@save');
 Route::post('studen/save_do', 'StudentController@save_do');
@@ -27,14 +27,12 @@ Route::post('studen/up_do/{id}', 'StudentController@up_do');
 // 后台
 Route::prefix('admin')->middleware('checklogin')->group(function () {
     // 考试货物
-    Route::get('cargoadd','CargoController@cargosave');
-    Route::post('cargoadd_do','CargoController@cargosave_do');
-    Route::get('catgoindex','CargoController@catgoindex');
-    Route::get('cargoup/{id}','CargoController@cargoup');
-    Route::post('cargoupdate/{id}','CargoController@cargoupdate');
-    Route::get('daily','CargoController@daily');
-
-    
+    Route::get('cargoadd', 'CargoController@cargosave');
+    Route::post('cargoadd_do', 'CargoController@cargosave_do');
+    Route::get('catgoindex', 'CargoController@catgoindex');
+    Route::get('cargoup/{id}', 'CargoController@cargoup');
+    Route::post('cargoupdate/{id}', 'CargoController@cargoupdate');
+    Route::get('daily', 'CargoController@daily');
 
 
     Route::get('index', 'UserController@index');
@@ -65,76 +63,76 @@ Route::prefix('admin')->middleware('checklogin')->group(function () {
     Route::post('site_do', 'SiteController@site_do')->name('site_do');
     Route::get('site_list', 'SiteController@site_list')->name('site_list');
     Route::get('site_del', 'SiteController@site_del');
-    Route::get('site_edit/{sid}','SiteController@site_edit');
+    Route::get('site_edit/{sid}', 'SiteController@site_edit');
     Route::post('site_update/{sid}', 'SiteController@site_update');
     Route::get('only', 'SiteController@only');
     // 新闻管理
-    Route::get('newindex','NewsController@index');
-	Route::get('add','NewsController@add');
-	Route::post('add_do','NewsController@add_do');
-	Route::get('address/{id}','NewsController@address');
-	Route::get('dian','NewsController@dian');
-    Route::get('qu','NewsController@qu');
+    Route::get('newindex', 'NewsController@index');
+    Route::get('add', 'NewsController@add');
+    Route::post('add_do', 'NewsController@add_do');
+    Route::get('address/{id}', 'NewsController@address');
+    Route::get('dian', 'NewsController@dian');
+    Route::get('qu', 'NewsController@qu');
     // 新闻管理2
 });
-    // 登陆
-    Route::get('login_del', 'LoginController@login_del')->name('login_del');
-    Route::get('login', 'LoginController@login');
-    Route::post('login_do', 'LoginController@login_do')->name('login_do');
+// 登陆
+Route::get('login_del', 'LoginController@login_del')->name('login_del');
+Route::get('login', 'LoginController@login');
+Route::post('login_do', 'LoginController@login_do')->name('login_do');
 // 前台
-    Route::get('/', 'IndexController@index');
-    Route::get('index/login', 'LoginController@index');
-    Route::post('index/login_do', 'LoginController@index_do');
-    Route::get('/reg', 'LoginController@reg');
-    Route::post('/reg_do', 'LoginController@reg_do');
-    Route::get('/email', 'LoginController@email');
-    // 商品展示
-    Route::get('/goods', 'GoodsController@goodslist');
-    // 商品详情页
-    Route::get('index/proinfo_index/{gid}','ProinfoController@proinfo_index');
-    // 所以商品展示
-    Route::get('index/prolist/{cid}','ProlistController@prolist');
-    // 购物车
-    Route::get('index/car_index','GarController@car_index');
+Route::get('/', 'IndexController@index');
+Route::get('index/login', 'LoginController@index');
+Route::post('index/login_do', 'LoginController@index_do');
+Route::get('/reg', 'LoginController@reg');
+Route::post('/reg_do', 'LoginController@reg_do');
+Route::get('/email', 'LoginController@email');
+// 商品展示
+Route::get('/goods', 'GoodsController@goodslist');
+// 商品详情页
+Route::get('index/proinfo_index/{gid}', 'ProinfoController@proinfo_index');
+// 所以商品展示
+Route::get('index/prolist/{cid}', 'ProlistController@prolist');
+// 购物车
+Route::get('index/car_index', 'GarController@car_index');
 //    微信第三方登陆
-    Route::get('index/code','LoginController@code');
-    Route::get('index/wechat_login','LoginController@wechat_login');
+Route::get('index/code', 'LoginController@code');
+Route::get('index/wechat_login', 'LoginController@wechat_login');
 
 //    微信公众号
-Route::get('index/get_user_list','WeixinController@get_user_list');
-Route::get('index/get_access_token','WeixinController@get_access_token');
-Route::get('index/get_wechat_access_token','WeixinController@get_wechat_access_token');
+Route::get('index/get_user_list', 'WeixinController@get_user_list');
+Route::get('index/get_access_token', 'WeixinController@get_access_token');
+Route::get('index/get_wechat_access_token', 'WeixinController@get_wechat_access_token');
 //微信内文件上传
-Route::get('index/image','WeixinController@uplode');
-Route::post('index/image_do','WeixinController@uplode_do');
-Route::get('index/uplode_list','WeixinController@uplode_list');
-Route::get('index/sidebar','WeixinController@sidebar');
-Route::get('index/clear_api','WeixinController@clear_api');
+Route::get('index/image', 'WeixinController@uplode');
+Route::post('index/image_do', 'WeixinController@uplode_do');
+Route::get('index/uplode_list', 'WeixinController@uplode_list');
+Route::get('index/sidebar', 'WeixinController@sidebar');
+Route::get('index/clear_api', 'WeixinController@clear_api');
 //微信用户标签
-Route::get('index/tog_list','TagController@tog_list');
-Route::get('index/tog_save','TagController@tog_save');
-Route::post('index/tog_do','TagController@tog_do');
-Route::get('index/tagdel/{id}','TagController@tagdel');
-Route::get('index/tagup','TagController@tagup');
-Route::post('index/tagup_do','TagController@tagup_do');
-Route::post('index/tag_souer','TagController@tag_souer');
-Route::get('index/user_tag','TagController@user_tag');
-Route::get('index/tag_send','TagController@tag_send');
-Route::post('index/tag_send_do','TagController@tag_send_do');
-Route::get('index/getidlist','TagController@getidlist');
+Route::get('index/tog_list', 'TagController@tog_list');
+Route::get('index/tog_save', 'TagController@tog_save');
+Route::post('index/tog_do', 'TagController@tog_do');
+Route::get('index/tagdel/{id}', 'TagController@tagdel');
+Route::get('index/tagup', 'TagController@tagup');
+Route::post('index/tagup_do', 'TagController@tagup_do');
+Route::post('index/tag_souer', 'TagController@tag_souer');
+Route::get('index/user_tag', 'TagController@user_tag');
+Route::get('index/tag_send', 'TagController@tag_send');
+Route::post('index/tag_send_do', 'TagController@tag_send_do');
+Route::get('index/getidlist', 'TagController@getidlist');
 
 //文件上传
-Route::get('index/uplode','StudentController@uplode');
-Route::post('index/uplode_do','StudentController@uplode_do');
+Route::get('index/uplode', 'StudentController@uplode');
+Route::post('index/uplode_do', 'StudentController@uplode_do');
 
 //微信周考
-Route::get('practise/login','GroupController@login');
-Route::get('practise/wechat_login','GroupController@wechat_login');
-Route::get('practise/code','GroupController@code');
+Route::get('practise/login', 'GroupController@login');
+Route::get('practise/wechat_login', 'GroupController@wechat_login');
+Route::get('practise/code', 'GroupController@code');
 Route::prefix('practise')->middleware('practise')->group(function () {
-    Route::get('user_tag','GroupController@user_tag');
-    Route::post('send','GroupController@send');
+    Route::get('user_tag', 'GroupController@user_tag');
+    Route::post('send', 'GroupController@send');
 });
 //生成二维码
-    Route::get('index/qrcode_list','QrcodeContronller@qrcode_list');
-    Route::get('index/qrcode','QrcodeContronller@qrcode');
+Route::get('index/qrcode_list', 'QrcodeContronller@qrcode_list');
+Route::get('index/qrcode', 'QrcodeContronller@qrcode');
