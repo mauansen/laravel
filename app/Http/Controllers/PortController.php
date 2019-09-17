@@ -20,5 +20,7 @@ class PortController extends Controller
 //        $xml_arr = (array)$xml_obj;
 //        \Log::Info(json_encode($xml_arr,JSON_UNESCAPED_UNICODE));
         echo $_GET['echostr'];
+
     }
+
 }
