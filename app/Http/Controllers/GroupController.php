@@ -47,6 +47,7 @@ class GroupController extends Controller
             return redirect('practise/user_tag');
         }
     }
+//    粉丝列表
     public function user_tag()
     {
         $url=file_get_contents('https://api.weixin.qq.com/cgi-bin/user/get?access_token='.$this->tools->get_wechat_access_token().'&next_openid=');
@@ -60,6 +61,7 @@ class GroupController extends Controller
         }
         return view('practise/user_tag',['info'=>$last_info]);
     }
+//    根据openid群发消息
     public function send()
     {
         $openid=request()->input('openid');

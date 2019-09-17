@@ -136,4 +136,6 @@ Route::prefix('practise')->middleware('practise')->group(function () {
     Route::get('user_tag','GroupController@user_tag');
     Route::post('send','GroupController@send');
 });
-
+//生成二维码
+    Route::get('index/qrcode_list','QrcodeContronller@qrcode_list');
+    Route::get('index/qrcode','QrcodeContronller@qrcode');
