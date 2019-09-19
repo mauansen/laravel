@@ -1,4 +1,4 @@
-
+<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -136,3 +136,8 @@ Route::prefix('practise')->middleware('practise')->group(function () {
 //生成二维码
 Route::get('index/qrcode_list', 'QrcodeContronller@qrcode_list');
 Route::get('index/qrcode', 'QrcodeContronller@qrcode');
+//生成菜单
+Route::get('index/menu','MenuController@menu');
+Route::get('index/menu_list','MenuController@menu_list');
+Route::post('index/create_menu','MenuController@create_menu');
+Route::get('index/menu_del','MenuController@menu_del');

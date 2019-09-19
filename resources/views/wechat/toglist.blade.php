@@ -24,6 +24,7 @@
                     <a href="{{url('index/get_user_list')}}?id={{$v['id']}}">打标签</a>|
                     <a href="{{url('index/user_tag')}}?id={{$v['id']}}& name={{$v['name']}}">粉丝列表</a>|
                     <a href="{{url('index/tag_send')}}?id={{$v['id']}}">群发消息</a>
+                    <a href="{{url('index/menu')}}">生成菜单</a>
                 </td>
             </tr>
 

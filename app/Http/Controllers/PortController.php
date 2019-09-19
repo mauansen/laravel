@@ -26,7 +26,7 @@ class PortController extends Controller
                 //判断openid是否已经在日志表
                 $wechat_openid = DB::table('wechat_openid')->where(['openid'=>$user_openid])->first();
                 if(empty($wechat_openid)){
-                    DB::table('user')->where(['id'=>$share_code])->increment('sum',1);
+                    DB::table('wechat_user')->where(['id'=>$share_code])->increment('sum',1);
                     DB::table('wechat_openid')->insert([
                         'openid'=>$user_openid,
                         'add_time'=>time()
@@ -35,7 +35,7 @@ class PortController extends Controller
             }
         }
         $message = '欢迎关注！';
-        $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA'.$message.']]></Content></xml>';
+        $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
         echo $xml_str;
     }
 
