@@ -31,8 +31,9 @@ class CrontabController extends Controller
     public function code()
     {
         $res=request()->all();
-        dd($res);
-        $url='https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WECHAT_APPID').'&secret='.env('SECRET').'&code='..'&grant_type=authorization_cod';
+        $result = file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WECHAT_APPID').'&secret='.env('SECRET').'&code='.$res['code'].'&grant_type=authorization_code');
+        $re = json_decode($result,1);
+        return redirect('index/tog_list');
     }
 
 }
