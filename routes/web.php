@@ -1,10 +1,8 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
@@ -15,7 +13,6 @@ Route::get('studen/add', 'UserController@studen');
 Route::post('studen/studenadd_do', 'UserController@studenadd_do')->name('do');
 Route::get('studen/lists', 'UserController@lists');
 Route::get('studen/mali', 'MailController@index');
-//
 // 考试学生
 Route::get('studen/save', 'StudentController@save');
 Route::post('studen/save_do', 'StudentController@save_do');
@@ -23,7 +20,6 @@ Route::get('studen/index', 'StudentController@index');
 Route::get('studen/del/{id}', 'StudentController@del');
 Route::get('studen/up/{id}', 'StudentController@up');
 Route::post('studen/up_do/{id}', 'StudentController@up_do');
-
 // 后台
 Route::prefix('admin')->middleware('checklogin')->group(function () {
     // 考试货物
@@ -33,8 +29,6 @@ Route::prefix('admin')->middleware('checklogin')->group(function () {
     Route::get('cargoup/{id}', 'CargoController@cargoup');
     Route::post('cargoupdate/{id}', 'CargoController@cargoupdate');
     Route::get('daily', 'CargoController@daily');
-
-
     Route::get('index', 'UserController@index');
     Route::get('head', 'UserController@head')->name('head');
     Route::get('foot', 'UserController@foot')->name('foot');
@@ -73,7 +67,6 @@ Route::prefix('admin')->middleware('checklogin')->group(function () {
     Route::get('address/{id}', 'NewsController@address');
     Route::get('dian', 'NewsController@dian');
     Route::get('qu', 'NewsController@qu');
-    // 新闻管理2
 });
 // 登陆
 Route::get('login_del', 'LoginController@login_del')->name('login_del');
@@ -97,19 +90,18 @@ Route::get('index/car_index', 'GarController@car_index');
 //    微信第三方登陆
 Route::get('index/code', 'LoginController@code');
 Route::get('index/wechat_login', 'LoginController@wechat_login');
-
 //    微信公众号
-Route::get('index/get_user_list', 'WeixinController@get_user_list');
-Route::get('index/get_access_token', 'WeixinController@get_access_token');
-Route::get('index/get_wechat_access_token', 'WeixinController@get_wechat_access_token');
+Route::get('index/get_user_list', 'WeixinController@get_user_list');//微信用户列表
+Route::get('index/get_access_token', 'WeixinController@get_access_token');//获取access_token
+Route::get('index/get_wechat_access_token', 'WeixinController@get_wechat_access_token');//
 //微信内文件上传
-Route::get('index/image', 'WeixinController@uplode');
-Route::post('index/image_do', 'WeixinController@uplode_do');
+Route::get('index/image', 'WeixinController@uplode');//微信上传图片
+Route::post('index/image_do', 'WeixinController@uplode_do');//
 Route::get('index/uplode_list', 'WeixinController@uplode_list');
 Route::get('index/sidebar', 'WeixinController@sidebar');
 Route::get('index/clear_api', 'WeixinController@clear_api');
 //微信用户标签
-Route::get('index/tog_list', 'TagController@tog_list');
+Route::get('index/tog_list', 'TagController@tog_list');//标签列表
 Route::get('index/tog_save', 'TagController@tog_save');
 Route::post('index/tog_do', 'TagController@tog_do');
 Route::get('index/tagdel/{id}', 'TagController@tagdel');
@@ -117,14 +109,12 @@ Route::get('index/tagup', 'TagController@tagup');
 Route::post('index/tagup_do', 'TagController@tagup_do');
 Route::post('index/tag_souer', 'TagController@tag_souer');
 Route::get('index/user_tag', 'TagController@user_tag');
-Route::get('index/tag_send', 'TagController@tag_send');
+Route::get('index/tag_send', 'TagController@tag_send');//根据标签群法给用户
 Route::post('index/tag_send_do', 'TagController@tag_send_do');
 Route::get('index/getidlist', 'TagController@getidlist');
-
 //文件上传
 Route::get('index/uplode', 'StudentController@uplode');
 Route::post('index/uplode_do', 'StudentController@uplode_do');
-
 //微信周考
 Route::get('practise/login', 'GroupController@login');
 Route::get('practise/wechat_login', 'GroupController@wechat_login');
@@ -141,3 +131,10 @@ Route::get('index/menu','MenuController@menu');
 Route::get('index/menu_list','MenuController@menu_list');
 Route::post('index/create_menu','MenuController@create_menu');
 Route::get('index/menu_del','MenuController@menu_del');
+//微信获取地理位置
+Route::get('index/location','MenuController@location');//get_wechat_jsapi_ticket
+//9-20的作也
+Route::get('zuo/login','zuoye\CrontabController@login');
+Route::post('zuo/login_do','zuoye\CrontabController@login_do');
+Route::get('zuo/wechat','zuoye\CrontabController@wechat');
+Route::get('zuo/code','zuoye\CrontabController@code');

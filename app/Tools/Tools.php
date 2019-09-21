@@ -56,5 +56,22 @@ class Tools {
         curl_close($curl);
         return $data;
     }
-
+    /**
+     * jsapi_ticket
+     * @return bool|string
+     */
+    public function get_wechat_jsapi_ticket()
+    {
+        //加入缓存
+        if($this->redis->exists('wechat_jsapi_ticket')){
+            //存在
+            return $this->redis->get('wechat_jsapi_ticket');
+        }else{
+            //不存在
+            $result = file_get_contents('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='.$this->get_wechat_access_token().'&type=jsapi');
+            $re = json_decode($result,1);
+            $this->redis->set('wechat_jsapi_ticket',$re['ticket'],7200);  //加入缓存
+            return $re['ticket'];
+        }
+    }
 }
