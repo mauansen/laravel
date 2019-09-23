@@ -112,6 +112,7 @@ Route::get('index/user_tag', 'TagController@user_tag');
 Route::get('index/tag_send', 'TagController@tag_send');//根据标签群法给用户
 Route::post('index/tag_send_do', 'TagController@tag_send_do');
 Route::get('index/getidlist', 'TagController@getidlist');
+Route::get('index/fomwork', 'TagController@fomwork');
 //文件上传
 Route::get('index/uplode', 'StudentController@uplode');
 Route::post('index/uplode_do', 'StudentController@uplode_do');

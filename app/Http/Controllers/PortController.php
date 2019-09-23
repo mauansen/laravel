@@ -40,7 +40,7 @@ class PortController extends Controller
             $a='签到成功';
         }
         if($xml_arr['EventKey'] == 'chaxun'){
-            $point=DB::table('wechat_user')->where(['openid'=>$xml_arr['FromUserName']])->first();
+            $point=DB::table('wechat_user')->where(['open_id'=>$xml_arr['FromUserName']])->first();
             $a='您的积分为'.$point->point;
         }
         $message = empty($a)? '欢迎关注！' : $a;

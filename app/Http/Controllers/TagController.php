@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tools\Tools;
+use DB;
 class TagController extends Controller
 {
     public $tools;
@@ -138,6 +139,8 @@ class TagController extends Controller
 //        发送模板消息
         public function fomwork()
         {
-
+            $point=DB::table('wechat_user')->where(['open_id'=>'o5TRIs2RgxW68JDZ5mN6gWNedBII'])->first();
+            $a='您的积分为'.$point->point;
+            dd($a);
         }
 }
