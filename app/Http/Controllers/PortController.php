@@ -19,10 +19,11 @@ class PortController extends Controller
         $xml_obj = simplexml_load_string($xml_string,'SimpleXMLElement',LIBXML_NOCDATA);
         $xml_arr = (array)$xml_obj;
         \Log::Info(json_encode($xml_arr,JSON_UNESCAPED_UNICODE));
+        $user_openid = $xml_arr['FromUserName']; //粉丝openid
         if($xml_arr['MsgType'] == 'event'){
             if($xml_arr['Event'] == 'subscribe'){
                 $share_code = explode('_',$xml_arr['EventKey'])[1];
-                $user_openid = $xml_arr['FromUserName']; //粉丝openid
+
                 //判断openid是否已经在日志表
                 $wechat_openid = DB::table('wechat_openid')->where(['openid'=>$user_openid])->first();
                 if(empty($wechat_openid)){
@@ -40,7 +41,7 @@ class PortController extends Controller
             $a='签到成功';
         }
         if($xml_arr['EventKey'] == 'chaxun'){
-            $point=DB::table('wechat_user')->where(['open_id'=>$xml_arr['FromUserName']])->first();
+            $point=DB::table('wechat_user')->where(['open_id'=>$user_openid])->first();
             $a='您的积分为'.$point->points;
         }
         $message = empty($a)? '欢迎关注！' : $a;
