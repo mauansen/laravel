@@ -38,7 +38,7 @@ class PortController extends Controller
         if($xml_arr['EventKey'] == 'qiandao'){
             $a='签到成功';
         }
-        if($xml_arr['EventKey'] == 'qiandao'){
+        if($xml_arr['EventKey'] == 'chaxun'){
             $a='230积分';
         }
         $message = empty($a)? '欢迎关注！' : $a;
