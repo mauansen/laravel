@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
 //        })->cron('* * * * *');
         $schedule->call(function(){
             \Log::info('123');
-        })->daily();
+        })->cron('* * * * *');
     }
 
     /**
