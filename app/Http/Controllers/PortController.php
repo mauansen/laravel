@@ -35,12 +35,11 @@ class PortController extends Controller
             }
         }
         if($xml_arr['EventKey'] == 'qiandao'){
-
+            $point=DB::table('wechat_user')->where(['open_id'=>$user_openid])->first();
             if($point->or_sign==1)
             {
                 $a='已签到';
             }else{
-                $point=DB::table('wechat_user')->where(['open_id'=>$user_openid])->first();
                 $points=$point->points+1;
                 $sign=$point->sign+1;
                 DB::table('wechat_user')->where(['open_id'=>$user_openid])->update([
