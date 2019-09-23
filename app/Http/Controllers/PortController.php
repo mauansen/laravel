@@ -31,13 +31,16 @@ class PortController extends Controller
                         'openid'=>$user_openid,
                         'add_time'=>time()
                     ]);
+                    $a='欢迎关注！';
                 }
             }
-            $message = '欢迎关注！';
-            $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
-            echo $xml_str;
         }
-
+        if($xml_arr['EventKey'] == 'qiandao'){
+            $a='签到成功';
+        }
+        $message = $a;
+        $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
+        echo $xml_str;
     }
 
 }
