@@ -41,7 +41,7 @@ class PortController extends Controller
         if($xml_arr['EventKey'] == 'qiandao'){
             $a='230积分';
         }
-        $message = empty($a)? $a :'欢迎关注！';
+        $message = empty($a)? '欢迎关注！' : $a;
         $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
         echo $xml_str;
     }
