@@ -43,11 +43,16 @@ class PortController extends Controller
                 'or_sign'=>1,
                 'sign'=>$sign
             ]);
-            $a='签到成功';
+            if($point->or_sign==1)
+            {
+                $a='已签到';
+            }else{
+                $a='签到成功';
+            }
         }
         if($xml_arr['EventKey'] == 'chaxun'){
             $point=DB::table('wechat_user')->where(['open_id'=>$user_openid])->first();
-            $a='您的积分为'.$point->points;
+            $a='您的积分为:'.$point->points;
         }
         $message = empty($a)?'欢迎关注！': $a;
         $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
