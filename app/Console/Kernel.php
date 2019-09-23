@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
 //            DB::table('login')->insert(['tel'=>123,'pwd'=>123]);
 //        })->cron('* * * * *');
         $schedule->call(function(){
-            /Log::info('123');
+            \Log::info('123');
         })->daily();
     }
 
