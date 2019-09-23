@@ -23,7 +23,6 @@ class PortController extends Controller
         if($xml_arr['MsgType'] == 'event'){
             if($xml_arr['Event'] == 'subscribe'){
                 $share_code = explode('_',$xml_arr['EventKey'])[1];
-
                 //判断openid是否已经在日志表
                 $wechat_openid = DB::table('wechat_openid')->where(['openid'=>$user_openid])->first();
                 if(empty($wechat_openid)){
@@ -32,7 +31,6 @@ class PortController extends Controller
                         'openid'=>$user_openid,
                         'add_time'=>time()
                     ]);
-                    $a='欢迎关注！';
                 }
             }
         }
@@ -44,7 +42,7 @@ class PortController extends Controller
             $point=DB::table('wechat_user')->where(['open_id'=>$user_openid])->first();
             $a='您的积分为'.$point->points;
         }
-        $message = empty($a)? '欢迎关注！' : $a;
+        $message = empty($a)?'欢迎关注！': $a;
         $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
         echo $xml_str;
     }
