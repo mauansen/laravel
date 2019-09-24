@@ -34,6 +34,7 @@ class Kernel extends ConsoleKernel
                         'sign'=>'0'
                     ]);
             }
+            \Log::info('123');
             DB::table('wechat_user')->update([
                 'or_sign'=>2
             ]);
