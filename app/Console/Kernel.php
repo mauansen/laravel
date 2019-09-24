@@ -26,13 +26,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
-//        $schedule->call(function(){
-//            DB::table('login')->insert(['tel'=>123,'pwd'=>123]);
-//        })->cron('* * * * *');
+        
         $schedule->call(function(){
-
             $data=DB::table('wechat_user')->get();
             foreach($data as $v){
                 if($v->or_sign==2)
@@ -46,6 +41,10 @@ class Kernel extends ConsoleKernel
                 'or_sign'=>2
             ]);
         })->cron('* * * * *');
+//        $schedule->call(function(){
+//
+//
+//        })->cron('* * * * *');
     }
 
     /**
