@@ -6,7 +6,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use DB;
 use Illuminate\Support\Facades\Log;
-
+use app\Tools\Tools;
 class Kernel extends ConsoleKernel
 {
     /**
@@ -28,15 +28,36 @@ class Kernel extends ConsoleKernel
     {
 
         $schedule->call(function(){
+            $tools=new Tools();
             $data=DB::table('wechat_user')->get();
+            $url='https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.$tools->get_wechat_access_token();
             foreach($data as $v){
+                if($v->or_sign==1){
+                    $v->or_sign='未签到';
+                }else{
+                    $v->or_sign='已签到';
+                }
+                $array=[
+                    'touser'=>$v->open_id,
+                    'template_id'=>'TaKwcrDeSUqM365TbRbSxy67wbVzteYfPVuMQpsZmIU',
+                    "url"=>"http://weixin.qq.com/download",
+                    'data'=>[
+                        'first'=>['value'=>'签到提醒'],
+                        'keyword1'=>['value'=>$v->nickname],
+                        'keyword2'=>['value'=>$v->or_sign],
+                        'keyword3'=>['value'=>$v->points],
+                        'keyword4'=>['value'=>$v->sign_time],
+                    ]
+                ];
+                $tools->curl_post($url,json_encode($array,JSON_UNESCAPED_UNICODE));
                     DB::table('wechat_user')->where(['or_sign'=>2])->update([
                         'sign'=>'0'
                     ]);
             }
             \Log::info('123');
             DB::table('wechat_user')->update([
-                'or_sign'=>2
+                'or_sign'=>2,
+                'sign_time'=>''
             ]);
         })->cron('* * * * *');
 //        $schedule->call(function(){
