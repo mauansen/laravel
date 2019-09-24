@@ -32,9 +32,7 @@ class Kernel extends ConsoleKernel
 //            DB::table('login')->insert(['tel'=>123,'pwd'=>123]);
 //        })->cron('* * * * *');
         $schedule->call(function(){
-            DB::table('wechat_user')->update([
-                'or_sign'=>2
-            ]);
+
             $data=DB::table('wechat_user')->get();
             foreach($data as $v){
                 if($v->or_sign==2)
@@ -44,6 +42,9 @@ class Kernel extends ConsoleKernel
                     ]);
                 }
             }
+            DB::table('wechat_user')->update([
+                'or_sign'=>2
+            ]);
         })->cron('5 * * * *');
     }
 
