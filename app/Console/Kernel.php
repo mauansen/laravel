@@ -45,7 +45,7 @@ class Kernel extends ConsoleKernel
             DB::table('wechat_user')->update([
                 'or_sign'=>2
             ]);
-        })->cron('5 * * * *');
+        })->cron('* * * * *');
     }
 
     /**

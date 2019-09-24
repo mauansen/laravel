@@ -39,7 +39,7 @@ class PortController extends Controller
             if($point->or_sign==1)
             {
                 $a='已签到';
-            }else{
+            }else if($point->or_sign==2){
                 $points=$point->points+1;
                 $sign=$point->sign+1;
                 DB::table('wechat_user')->where(['open_id'=>$user_openid])->update([
