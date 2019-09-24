@@ -47,59 +47,59 @@ class PortController extends Controller
             if(empty($point)){
                 DB::table('wechat_user')->insert([
                     'open_id'=>$user_openid,
-                    'nickname'=>$data->nickname
+                    'nickname'=>$data['nickname']
                 ]);
             }
             $message='欢迎'.$data->nickname.'同学，感谢您的关注';
             $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
             echo $xml_str;
         }
-        if($xml_arr['EventKey'] == 'qiandao'){
-            if($point->or_sign == 1){
-                $message='已签到';
-                $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
-                echo $xml_str;
-            }else if($point->or_sign == 2){
-                if($point->sign==1||$point->sign=='0'){
-                    $points=$point->points+5;
-                    $sign=$point->sign+1;
-                }
-                if($point->sign==2){
-                    $points=$point->points+10;
-                    $sign=$point->sign+1;
-                }
-                if($point->sign==3){
-                    $points=$point->points+15;
-                    $sign=$point->sign+1;
-                }
-                if($point->sign==4){
-                    $points=$point->points+20;
-                    $sign=$point->sign+1;
-                }
-                if($point->sign==5){
-                    $points=$point->points+25;
-                    $sign=$point->sign+1;
-                }
-                if($point->sign==6){
-                    $points=$point->points+5;
-                    $sign=1;
-                }
-                DB::table('wechat_user')->where(['open_id'=>$user_openid])->update([
-                    'points'=>$points,
-                    'or_sign'=>1,
-                    'sign'=>$sign,
-                    'sign_time'=>time()
-                ]);
-                $message='签到成功';
-                $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
-                echo $xml_str;
-            }
-        }
-        if($xml_arr['EventKey'] == 'chaxun'){
-            $message='您的积分为:'.$point->points.'分';
-            $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
-            echo $xml_str;
-        }
+//        if($xml_arr['EventKey'] == 'qiandao'){
+//            if($point->or_sign == 1){
+//                $message='已签到';
+//                $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
+//                echo $xml_str;
+//            }else if($point->or_sign == 2){
+//                if($point->sign==1||$point->sign=='0'){
+//                    $points=$point->points+5;
+//                    $sign=$point->sign+1;
+//                }
+//                if($point->sign==2){
+//                    $points=$point->points+10;
+//                    $sign=$point->sign+1;
+//                }
+//                if($point->sign==3){
+//                    $points=$point->points+15;
+//                    $sign=$point->sign+1;
+//                }
+//                if($point->sign==4){
+//                    $points=$point->points+20;
+//                    $sign=$point->sign+1;
+//                }
+//                if($point->sign==5){
+//                    $points=$point->points+25;
+//                    $sign=$point->sign+1;
+//                }
+//                if($point->sign==6){
+//                    $points=$point->points+5;
+//                    $sign=1;
+//                }
+//                DB::table('wechat_user')->where(['open_id'=>$user_openid])->update([
+//                    'points'=>$points,
+//                    'or_sign'=>1,
+//                    'sign'=>$sign,
+//                    'sign_time'=>time()
+//                ]);
+//                $message='签到成功';
+//                $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
+//                echo $xml_str;
+//            }
+//        }
+//        if($xml_arr['EventKey'] == 'chaxun'){
+//            $message='您的积分为:'.$point->points.'分';
+//            $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
+//            echo $xml_str;
+//        }
 
     }
 
