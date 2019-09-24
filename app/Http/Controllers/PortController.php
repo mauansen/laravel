@@ -46,7 +46,7 @@ class PortController extends Controller
             $data=json_decode($data,1);
             if(empty($point)){
                 DB::table('wechat_user')->insert([
-                    'open_id'=>$user_openid,
+                    'open_id'=>$xml_arr['FromUserName'],
                     'nickname'=>$data['nickname']
                 ]);
             }
