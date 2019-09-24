@@ -48,7 +48,7 @@ class Kernel extends ConsoleKernel
                         'keyword4'=>['value'=>$v->sign_time],
                     ]
                 ];
-                $tools->curl_post($url,json_encode($array,JSON_UNESCAPED_UNICODE));
+                //$tools->curl_post($url,json_encode($array,JSON_UNESCAPED_UNICODE));
                 DB::table('wechat_user')->where(['or_sign'=>2])->update([
                     'sign'=>'0'
                 ]);
