@@ -139,7 +139,16 @@ class TagController extends Controller
 //
         public function fomwork()
         {
-            $url=file_get_contents('https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->tools->get_wechat_access_token().'&openid=o5TRIs5L3naN6dSDtMwDTkjVsqlI&lang=zh_CN');
-            dd(json_decode($url));
+//            $point=DB::table('wechat_user')->where(['open_id'=>'o5TRIs5L3naN6dSDtMwDTkjVsqlI'])->first();
+//            $data=file_get_contents('https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->tools->get_wechat_access_token().'&openid=o5TRIs5L3naN6dSDtMwDTkjVsqlI&lang=zh_CN');
+//            $data=json_decode($data);
+//            if(empty($point)){
+//                DB::table('wechat_user')->insert([
+//                    'open_id'=>'o5TRIs5L3naN6dSDtMwDTkjVsqlI',
+//                    'nickname'=>$data->nickname
+//                ]);
+//            }
+//            $message='欢迎'.$data->nickname.'同学，感谢您的关注';
+//            echo $message;
         }
 }
