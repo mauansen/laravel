@@ -44,11 +44,13 @@ class PortController extends Controller
         if($xml_arr['Event'] == 'subscribe') {
             $data=file_get_contents('https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->tools->get_wechat_access_token().'&openid='.$user_openid.'&lang=zh_CN');
             $data=json_decode($data);
-            DB::table('wechat_user')->insert([
-                'open_id'=>$user_openid,
-                'nickname'=>$data->nickname
-            ]);
-            $message='欢迎'.$point->nickname.'同学，感谢您的关注';
+            if(empty($point)){
+                DB::table('wechat_user')->insert([
+                    'open_id'=>$user_openid,
+                    'nickname'=>$data->nickname
+                ]);
+            }
+            $message='欢迎'.$data->nickname.'同学，感谢您的关注';
             $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
             echo $xml_str;
         }
