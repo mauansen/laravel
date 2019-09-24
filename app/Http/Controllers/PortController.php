@@ -34,12 +34,11 @@ class PortController extends Controller
                 }
             }
         }
+        $point=DB::table('wechat_user')->where(['open_id'=>$user_openid])->first();
         if($xml_arr['EventKey'] == 'qiandao'){
-            $point=DB::table('wechat_user')->where(['open_id'=>$user_openid])->first();
-            if($point->or_sign==1)
-            {
+            if($point->or_sign == 1){
                 $a='已签到';
-            }else if($point->or_sign==2){
+            }else if($point->or_sign == 2){
                 $points=$point->points+1;
                 $sign=$point->sign+1;
                 DB::table('wechat_user')->where(['open_id'=>$user_openid])->update([
@@ -49,9 +48,7 @@ class PortController extends Controller
                 ]);
                 $a='签到成功';
             }
-        }
-        if($xml_arr['EventKey'] == 'chaxun'){
-            $point=DB::table('wechat_user')->where(['open_id'=>$user_openid])->first();
+        }else if($xml_arr['EventKey'] == 'chaxun'){
             $a='您的积分为:'.$point->points;
         }
         $message = empty($a)?'欢迎关注！': $a;
