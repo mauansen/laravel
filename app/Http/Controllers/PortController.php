@@ -47,10 +47,10 @@ class PortController extends Controller
             if(empty($point)){
                 DB::table('wechat_user')->insert([
                     'open_id'=>$user_openid,
-                    'nickname'=>$data->nickname
+                    'nickname'=>$data['nickname']
                 ]);
             }
-            $message='欢迎'.$data->nickname.'同学，感谢您的关注';
+            $message='欢迎'.$data['nickname'].'同学，感谢您的关注';
             $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
             echo $xml_str;
         }
