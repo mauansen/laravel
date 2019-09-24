@@ -139,13 +139,14 @@ class TagController extends Controller
 //        发送模板消息
         public function fomwork()
         {
-            $point=DB::table('wechat_user')->where(['open_id'=>'o5TRIs2RgxW68JDZ5mN6gWNedBII'])->first();
-            $points=$point->point+1;
-            $sign=$point->sign+1;
-            DB::table('wechat_user')->where(['open_id'=>'o5TRIs2RgxW68JDZ5mN6gWNedBII'])->update([
-                'point'=>$points,
-                'or_sign'=>1,
-                'sign'=>$sign
+            $data=DB::table('wechat_user')->get();
+            foreach($data as $v){
+                    DB::table('wechat_user')->where(['or_sign'=>2])->update([
+                        'sign'=>'0'
+                    ]);
+            }
+            DB::table('wechat_user')->update([
+                'or_sign'=>2
             ]);
         }
 }

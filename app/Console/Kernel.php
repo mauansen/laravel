@@ -26,16 +26,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        
+
         $schedule->call(function(){
             $data=DB::table('wechat_user')->get();
             foreach($data as $v){
-                if($v->or_sign==2)
-                {
-                    DB::table('wechat_user')->update([
+                    DB::table('wechat_user')->where(['or_sign'=>2])->update([
                         'sign'=>'0'
                     ]);
-                }
             }
             DB::table('wechat_user')->update([
                 'or_sign'=>2
