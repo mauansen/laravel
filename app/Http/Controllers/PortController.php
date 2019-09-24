@@ -42,9 +42,9 @@ class PortController extends Controller
 //        }
         $point=DB::table('wechat_user')->where(['open_id'=>$user_openid])->first();
         if($xml_arr['Event'] == 'subscribe' && $xml_arr['MsgType'] == 'event') {
-            $data=file_get_contents('https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->tools->get_wechat_access_token().'&openid='.$user_openid.'&lang=zh_CN');
-            $data=json_decode($data);
-            if(!empty($point)){
+            $data=file_get_contents('https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->tools->get_wechat_access_token().'&openid='.$xml_arr['FromUserName'].'&lang=zh_CN');
+            $data=json_decode($data,1);
+            if(empty($point)){
                 DB::table('wechat_user')->insert([
                     'open_id'=>$user_openid,
                     'nickname'=>$data['nickname']
