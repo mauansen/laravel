@@ -52,13 +52,14 @@ class Kernel extends ConsoleKernel
                 DB::table('wechat_user')->where(['or_sign'=>2])->update([
                     'sign'=>'0'
                 ]);
+                DB::table('wechat_user')->update([
+                    'or_sign'=>2,
+                    'sign_time'=>'1'
+                ]);
             }
 
             \Log::info('123');
-            DB::table('wechat_user')->update([
-                'or_sign'=>2,
-                'sign_time'=>'1'
-            ]);
+
         })->cron('* * * * *');
 //        $schedule->call(function(){
 //
