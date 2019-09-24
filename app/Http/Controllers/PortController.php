@@ -39,7 +39,7 @@ class PortController extends Controller
             if($point->or_sign == 1){
                 $a='已签到';
             }else if($point->or_sign == 2){
-                if($point->sign==1){
+                if($point->sign==1||$point->sign=='0'){
                     $points=$point->points+5;
                     $sign=$point->sign+1;
                 }
