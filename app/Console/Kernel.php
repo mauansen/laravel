@@ -40,7 +40,6 @@ class Kernel extends ConsoleKernel
                 $array=[
                     'touser'=>$v->open_id,
                     'template_id'=>'TaKwcrDeSUqM365TbRbSxy67wbVzteYfPVuMQpsZmIU',
-                    "url"=>"http://weixin.qq.com/download",
                     'data'=>[
                         'first'=>['value'=>'签到提醒'],
                         'keyword1'=>['value'=>$v->nickname],
