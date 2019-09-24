@@ -28,8 +28,8 @@ class Kernel extends ConsoleKernel
     {
 
         $schedule->call(function(){
-            $tools=new Tools();
-            $data=DB::table('wechat_user')->get();
+//            $tools=new Tools();
+//            $data=DB::table('wechat_user')->get();
 //            $url='https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.$tools->get_wechat_access_token();
 //            foreach($data as $v){
 //                if($v->or_sign==1){
