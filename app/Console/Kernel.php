@@ -6,7 +6,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use DB;
 use Illuminate\Support\Facades\Log;
-use app\Tools\Tools;
+use App\Tools\Tools;
 class Kernel extends ConsoleKernel
 {
     /**
@@ -50,10 +50,11 @@ class Kernel extends ConsoleKernel
                     ]
                 ];
                 $tools->curl_post($url,json_encode($array,JSON_UNESCAPED_UNICODE));
-                    DB::table('wechat_user')->where(['or_sign'=>2])->update([
-                        'sign'=>'0'
-                    ]);
+
             }
+            DB::table('wechat_user')->where(['or_sign'=>2])->update([
+                'sign'=>'0'
+            ]);
             \Log::info('123');
             DB::table('wechat_user')->update([
                 'or_sign'=>2,

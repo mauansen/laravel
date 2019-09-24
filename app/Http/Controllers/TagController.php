@@ -136,17 +136,10 @@ class TagController extends Controller
             }
             return view('wechat.getidlist',['re'=>$re]);
         }
-//        发送模板消息
+//
         public function fomwork()
         {
-            $data=DB::table('wechat_user')->get();
-            foreach($data as $v){
-                    DB::table('wechat_user')->where(['or_sign'=>2])->update([
-                        'sign'=>'0'
-                    ]);
-            }
-            DB::table('wechat_user')->update([
-                'or_sign'=>2
-            ]);
+            $url=file_get_contents('https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->tools->get_wechat_access_token().'&openid=o5TRIs5L3naN6dSDtMwDTkjVsqlI&lang=zh_CN');
+            dd(json_decode($url));
         }
 }
