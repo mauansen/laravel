@@ -32,14 +32,24 @@ class PortController extends Controller
             if(empty($point)){
                 DB::table('wechat_user')->insert([
                     'open_id'=>$xml_arr['FromUserName'],
-                    'nickname'=>$data['nickname']
+                    'nickname'=>$data['nickname'],
+                    'add_time'=>time(),
+                    'sex'=>$data['sex']
                 ]);
                 $message='您好'.$data['nickname'].'当前时间为'.date('Y-m-d H:i:s',time());
                 $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
+                $wechat_log_psth = storage_path('logs/wechat/'.date('Y-m-d').'.log');
+                file_put_contents($wechat_log_psth,"///////////开头///////////\n",FILE_APPEND);
+                file_put_contents($wechat_log_psth,$xml_str,FILE_APPEND);
+                file_put_contents($wechat_log_psth,"\n///////////结尾///////////\n\n",FILE_APPEND);
                 echo $xml_str;
             }else{
                 $message='欢迎回来'.$data['nickname'].'当前时间为'.date('Y-m-d H:i:s',time());
                 $xml_str = '<xml><ToUserName><![CDATA['.$xml_arr['FromUserName'].']]></ToUserName><FromUserName><![CDATA['.$xml_arr['ToUserName'].']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['.$message.']]></Content></xml>';
+                $wechat_log_psth = storage_path('logs/wechat/'.date('Y-m-d').'.log');
+                file_put_contents($wechat_log_psth,"///////////开头///////////\n",FILE_APPEND);
+                file_put_contents($wechat_log_psth,$xml_str,FILE_APPEND);
+                file_put_contents($wechat_log_psth,"\n///////////结尾///////////\n\n",FILE_APPEND);
                 echo $xml_str;
             }
         }
