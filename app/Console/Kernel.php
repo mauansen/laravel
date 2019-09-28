@@ -26,9 +26,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-
         $schedule->call(function(){
-            $tools=new Tools();
+            $tools=new Tools;
             $data=DB::table('wechat_user')->get();
             $url='https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.$tools->get_wechat_access_token();
             foreach($data as $v){
@@ -39,32 +38,27 @@ class Kernel extends ConsoleKernel
                 }
                 $array=[
                     'touser'=>$v->open_id,
-                    'template_id'=>'TaKwcrDeSUqM365TbRbSxy67wbVzteYfPVuMQpsZmIU',
+                    'template_id'=>'RUTbQmDdMEk7Y5xUSq10pBLbz2p16KdpiVV5b87Izco',
                     'data'=>[
                         'first'=>['value'=>'签到提醒'],
                         'keyword1'=>['value'=>$v->nickname],
                         'keyword2'=>['value'=>$v->or_sign],
-                        'keyword3'=>['value'=>$v->points],
+                        'keyword3'=>['value'=>'1200'],
                         'keyword4'=>['value'=>$v->sign_time],
                     ]
                 ];
-                //$tools->curl_post($url,json_encode($array,JSON_UNESCAPED_UNICODE));
-                DB::table('wechat_user')->where(['or_sign'=>2])->update([
-                    'sign'=>'0'
-                ]);
-                DB::table('wechat_user')->update([
-                    'or_sign'=>2,
-                    'sign_time'=>'1'
-                ]);
+                $tools->curl_post($url,json_encode($array,JSON_UNESCAPED_UNICODE));
             }
-
+            DB::table('wechat_user')->where(['or_sign'=>2])->update([
+                'sign'=>'0'
+            ]);
+            DB::table('wechat_user')->update([
+                'or_sign'=>2,
+                'sign_time'=>'1'
+            ]);
             \Log::info('123');
 
         })->cron('* * * * *');
-//        $schedule->call(function(){
-//
-//
-//        })->cron('* * * * *');
     }
 
     /**

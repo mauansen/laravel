@@ -139,16 +139,20 @@ class TagController extends Controller
 //
         public function fomwork()
         {
-//            $point=DB::table('wechat_user')->where(['open_id'=>'o5TRIs5L3naN6dSDtMwDTkjVsqlI'])->first();
-//            $data=file_get_contents('https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->tools->get_wechat_access_token().'&openid=o5TRIs5L3naN6dSDtMwDTkjVsqlI&lang=zh_CN');
-//            $data=json_decode($data);
-//            if(empty($point)){
-//                DB::table('wechat_user')->insert([
-//                    'open_id'=>'o5TRIs5L3naN6dSDtMwDTkjVsqlI',
-//                    'nickname'=>$data->nickname
-//                ]);
-//            }
-//            $message='欢迎'.$data->nickname.'同学，感谢您的关注';
-//            echo $message;
+            $tools=new Tools();
+            $url='https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.$tools->get_wechat_access_token();
+
+                $array=[
+                    'touser'=>'o5TRIs5L3naN6dSDtMwDTkjVsqlI',
+                    'template_id'=>'RUTbQmDdMEk7Y5xUSq10pBLbz2p16KdpiVV5b87Izco',
+                    'data'=>[
+                        'first'=>['value'=>'签到提醒'],
+                        'keyword1'=>['value'=>'。。。'],
+                        'keyword2'=>['value'=>'已签到'],
+                        'keyword3'=>['value'=>'1200'],
+                        'keyword4'=>['value'=>'12:00'],
+                    ]
+                ];
+                $tools->curl_post($url,json_encode($array,JSON_UNESCAPED_UNICODE));
         }
 }
