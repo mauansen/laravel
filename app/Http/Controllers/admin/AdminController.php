@@ -37,8 +37,28 @@ class AdminController extends Controller
 //    绑定账号
     public function accout()
     {
-        echo 1;
+        return view('nine.accout');
     }
+//    public function accout_do()
+//    {
+//        $data=request()->except('_token');
+//        $res=DB::table('nine')->where(['name'=>$data['name']])->first();
+//        if($res){
+//            if($data['pwd']==$res->pwd){
+//
+////                DB::table('nine')->where('id','=',$res->id)->update([
+////                    'openid'=>
+////                ]);
+//
+//            }else{
+//
+//
+//            }
+//        }else{
+//            return redirect('nine/login');
+//        }
+//    }
+
 //    发送验证码
     public function send()
     {
@@ -49,7 +69,7 @@ class AdminController extends Controller
                 $code=rand(0000,9999);
                 $url='https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.$this->tools->get_wechat_access_token();
                 $data=[
-                    'touser'=>'o5TRIs5L3naN6dSDtMwDTkjVsqlI',
+                    'touser'=>$res->openid,
                     'template_id'=>'tSC9d2d7n-vgTFpk1ugENR280FPNG1AT4GwZhYOcoQw',
                     'data'=>[
                         'first'=>['value'=>'验证码'],
