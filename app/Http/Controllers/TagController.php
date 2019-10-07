@@ -139,9 +139,19 @@ class TagController extends Controller
 //
         public function fomwork()
         {
-
-            $data=file_get_contents('https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->tools->get_wechat_access_token().'&openid=o5TRIs2RgxW68JDZ5mN6gWNedBII&lang=zh_CN');
-            $data=json_decode($data,1);
-            dd($data);
+            $res=DB::table('nine')->where(['id'=>1])->first();
+            $code=rand(0000,9999);
+            $url='https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.$this->tools->get_wechat_access_token();
+            $data=[
+                'touser'=>'o5TRIs5L3naN6dSDtMwDTkjVsqlI',
+                'template_id'=>'tSC9d2d7n-vgTFpk1ugENR280FPNG1AT4GwZhYOcoQw',
+                'data'=>[
+                    'first'=>['value'=>'验证码'],
+                    'keyword1'=>['value'=>$res->name],
+                    'keyword2'=>['value'=>'1232'],
+                ]
+            ];
+            $aa=$this->tools->curl_post($url,json_encode($data,JSON_UNESCAPED_UNICODE));
+            dd(json_decode($aa));
         }
 }

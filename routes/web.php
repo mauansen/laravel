@@ -1,4 +1,15 @@
 <?php
+//第九个月接口
+//后台登陆
+Route::get('nine/login','admin\AdminController@login');
+Route::post('nine/login_int','admin\AdminController@login_int');
+Route::prefix('nine')->group(function (){
+    Route::get('index','admin\AdminController@index');
+    Route::get('index_v1','admin\AdminController@index_v1');
+    Route::get('send','admin\AdminController@send');
+    Route::get('accout','admin\AdminController@accout');
+});
+//
 /*
 |--------------------------------------------------------------------------
 | Web Routes

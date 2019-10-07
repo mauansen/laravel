@@ -46,6 +46,7 @@ class Tools {
 //    curl
     public function curl_post($url,$data)
     {
+//        curl的四部1初始化2设置请求3发送请求4关闭请求
         $curl = curl_init($url);
         curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
         curl_setopt($curl,CURLOPT_POST,true);  //发送post
