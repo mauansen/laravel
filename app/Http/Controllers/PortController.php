@@ -25,10 +25,10 @@ class PortController extends Controller
         $xml_obj = simplexml_load_string($xml_string,'SimpleXMLElement',LIBXML_NOCDATA);
         $xml_arr = (array)$xml_obj;
         \Log::Info(json_encode($xml_arr,JSON_UNESCAPED_UNICODE));
-        $data=request()->except('_token');
-        $res=DB::table('nine')->where(['name'=>$data['name']])->first();
-        if($res){
-            if($data['pwd']==$res->pwd){
+        $ninedata=request()->input();
+        $nine=DB::table('nine')->where(['name'=>$ninedata['name']])->first();
+        if($nine){
+            if($ninedata['pwd']==$nine->pwd){
                 $data=file_get_contents('https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->tools->get_wechat_access_token().'&openid='.$xml_arr['FromUserName'].'&lang=zh_CN');
                 $data=json_decode($data,1);
                 DB::table('nine')->where('id','=',$res->id)->update([
