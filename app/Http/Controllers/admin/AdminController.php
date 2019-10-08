@@ -37,7 +37,7 @@ class AdminController extends Controller
 //    绑定账号
     public function accout()
     {
-        $req = $request->all();
+        $req = request()->all();
         $redirect_uri =  env('APP_URL').'nine/accout';
         $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.urlencode($redirect_uri).'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
         header('Location:'.$url);
