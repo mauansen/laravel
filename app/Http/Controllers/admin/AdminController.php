@@ -38,7 +38,7 @@ class AdminController extends Controller
     public function accout()
     {
         $req = request()->all();
-        if(empty($req)){
+        if(!empty($req)){
             $result = file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WECHAT_APPID').'&secret='.env('SECRET').'&code='.$req['code'].'&grant_type=authorization_code');
             $re = json_decode($result,1);
             $user_info = file_get_contents('https://api.weixin.qq.com/sns/userinfo?access_token='.$re['access_token'].'&openid='.$re['openid'].'&lang=zh_CN');

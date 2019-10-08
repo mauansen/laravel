@@ -24,7 +24,7 @@
 <div class="middle-box text-center loginscreen  animated fadeInDown">
     <div>
         <h3>绑定账号</h3>
-        <form class="m-t" role="form" action="{{url('api/envet')}}" method="post">
+        <form class="m-t" role="form" action="" method="post">
             @csrf
             <div class="form-group">
                 <input type="email" name="name" class="form-control" placeholder="用户名" required="">
