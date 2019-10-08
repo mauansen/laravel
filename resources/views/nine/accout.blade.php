@@ -6,7 +6,7 @@
     <base href="/">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> - 登录</title>
+    <title> - 绑定账号</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
 
@@ -24,9 +24,11 @@
 <div class="middle-box text-center loginscreen  animated fadeInDown">
     <div>
         <h3>绑定账号</h3>
-        <form class="m-t" role="form" action="" method="post">
+        <form class="m-t" role="form" action="{{url('nine/accout_do')}}" method="post">
             @csrf
             <div class="form-group">
+                <input type="hidden" name="openid" value="{{$openid}}">
+                <input type="hidden" name="nickname" value="{{$nickname}}">
                 <input type="email" name="name" class="form-control" placeholder="用户名" required="">
             </div>
             <div class="form-group">

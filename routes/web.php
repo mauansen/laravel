@@ -8,6 +8,7 @@ Route::prefix('nine')->group(function (){
     Route::get('index_v1','admin\AdminController@index_v1');
     Route::get('send','admin\AdminController@send');
     Route::get('accout','admin\AdminController@accout');
+    Route::get('accout_do','admin\AdminController@accout_do');
 });
 //
 /*

@@ -43,73 +43,28 @@ class AdminController extends Controller
             $re = json_decode($result,1);
             $user_info = file_get_contents('https://api.weixin.qq.com/sns/userinfo?access_token='.$re['access_token'].'&openid='.$re['openid'].'&lang=zh_CN');
             $wechat_user_info = json_decode($user_info,1);
-            dd($wechat_user_info);
         }else{
             $redirect_uri =  env('APP_URL').'/nine/accout';
             $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.urlencode($redirect_uri).'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
             header('Location:'.$url);
         }
-
-
-        return view('nine.accout');
+        return view('nine.accout',['openid'=>$wechat_user_info['openid'],'nickname'=>$wechat_user_info['nickname']]);
     }
-    public function wechat_login()
+    public function accout_do()
     {
+        $data=request()->except('_token');
+        $res=DB::table('nine')->where(['name'=>$data['name']])->first();
+        if($res){
+            if($data['pwd']==$res->pwd){
 
-        //echo $url;die();
-    }
-    public function code(Request $request)
-    {
-        $req = $request->all();
-        $result = file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WECHAT_APPID').'&secret='.env('SECRET').'&code='.$req['code'].'&grant_type=authorization_code');
-        $re = json_decode($result,1);
-        $user_info = file_get_contents('https://api.weixin.qq.com/sns/userinfo?access_token='.$re['access_token'].'&openid='.$re['openid'].'&lang=zh_CN');
-        $wechat_user_info = json_decode($user_info,1);
-//        dd($wechat_user_info);
-        $open_id=DB::table('wechat')->where(['open_id'=>$wechat_user_info['openid']])->first();
-        if(!empty($open_id)){
-//            存在
-            request()->session()->put('tel',$wechat_user_info);
-//            return 'ok'
-            return redirect('/');
+                DB::table('nine')->where('id','=',$res->id)->update([
+                    'openid'=>$data['openid'],
+                    'nickname'=>$data['nickname']
+                ]);
 
-        }else{
-//            不存在
-            DB::beginTransaction();
-            $l_id=DB::table('login')->insertGetId([
-                'tel'=>$wechat_user_info['nickname'],
-                'pwd'=>'',
-                'time'=>time(),
-            ]);
-            DB::table('wechat')->insert([
-                'l_id'=>$l_id,
-                'open_id'=>$wechat_user_info['openid'],
-            ]);
-//            return 123456789;
-            request()->session()->put('tel',$wechat_user_info);
-            return redirect('/');
-
+            }
         }
     }
-//    public function accout_do()
-//    {
-//        $data=request()->except('_token');
-//        $res=DB::table('nine')->where(['name'=>$data['name']])->first();
-//        if($res){
-//            if($data['pwd']==$res->pwd){
-//
-////                DB::table('nine')->where('id','=',$res->id)->update([
-////                    'openid'=>
-////                ]);
-//
-//            }else{
-//
-//
-//            }
-//        }else{
-//            return redirect('nine/login');
-//        }
-//    }
 
 //    发送验证码
     public function send()
