@@ -38,15 +38,16 @@ class AdminController extends Controller
     public function accout()
     {
         $req = request()->all();
-        $redirect_uri =  env('APP_URL').'nine/accout';
-        $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.urlencode($redirect_uri).'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
-        header('Location:'.$url);
         if(empty($req)){
             $result = file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WECHAT_APPID').'&secret='.env('SECRET').'&code='.$req['code'].'&grant_type=authorization_code');
             $re = json_decode($result,1);
             $user_info = file_get_contents('https://api.weixin.qq.com/sns/userinfo?access_token='.$re['access_token'].'&openid='.$re['openid'].'&lang=zh_CN');
             $wechat_user_info = json_decode($user_info,1);
             dd($wechat_user_info);
+        }else{
+            $redirect_uri =  env('APP_URL').'nine/accout';
+            $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.urlencode($redirect_uri).'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+            header('Location:'.$url);
         }
 
 
