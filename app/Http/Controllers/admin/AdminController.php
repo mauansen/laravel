@@ -43,14 +43,12 @@ class AdminController extends Controller
             $re = json_decode($result,1);
             $user_info = file_get_contents('https://api.weixin.qq.com/sns/userinfo?access_token='.$re['access_token'].'&openid='.$re['openid'].'&lang=zh_CN');
             $wechat_user_info=json_decode($user_info,1);
+            return view('nine.accout',['openid'=>$wechat_user_info['openid'],'nickname'=>$wechat_user_info['nickname']]);
         }else{
             $redirect_uri =  env('APP_URL').'/nine/accout';
             $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.urlencode($redirect_uri).'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
             header('Location:'.$url);
         }
-        dd(isset($wechat_user_info['openid']));
-        dd(isset($wechat_user_info['nickname']));
-        return view('nine.accout',['openid'=>isset($wechat_user_info['openid']),'nickname'=>isset($wechat_user_info['nickname'])]);
     }
     public function accout_do()
     {
