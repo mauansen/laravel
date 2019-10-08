@@ -53,7 +53,6 @@ class AdminController extends Controller
     public function accout_do()
     {
         $data=request()->except('_token');
-        dd($data);
         $res=DB::table('nine')->where(['name'=>$data['name']])->first();
         if($res){
             if($data['pwd']==$res->pwd){
