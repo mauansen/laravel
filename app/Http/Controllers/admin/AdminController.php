@@ -45,9 +45,7 @@ class AdminController extends Controller
             $wechat_user_info = json_decode($user_info,1);
             dd($wechat_user_info);
         }else{
-            $redirect_uri =  env('APP_URL').'nine/accout';
-
-            dd($redirect_uri);
+            $redirect_uri =  env('APP_URL').'/nine/accout';
             $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.urlencode($redirect_uri).'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
             header('Location:'.$url);
         }
