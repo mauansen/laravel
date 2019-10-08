@@ -39,10 +39,12 @@
             </div>
             <div class="form-group">
                 <input type="text" name="code" class="form-control" placeholder="验证码" required="">
-                <input type="button" class="btn btn-primary block full-width m-b code" value="获取验证码" required="">
             </div>
+            <input type="button" class="btn btn-primary block full-width m-b code" value="获取验证码" required="">
+
             <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
             <div>
+                登陆请先扫码关注
                 <img src="{{env('APP_URL')}}storage/img/0.jpg" width="100" alt="">
             </div>
 

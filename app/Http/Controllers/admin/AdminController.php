@@ -22,13 +22,12 @@ class AdminController extends Controller
     {
         $data=request()->except('_token');
         $res=DB::table('nine')->where(['name'=>$data['name']])->first();
-        if($res){
+        $code=request()->session()->get($res->openid);
+        if($res && $data['code'] ==$code){
             if($data['pwd']==$res->pwd){
                 return redirect('nine/index');
-
             }else{
                return redirect('nine/login');
-
             }
         }else{
             return redirect('nine/login');
@@ -38,6 +37,8 @@ class AdminController extends Controller
     public function accout()
     {
         $req = request()->all();
+        $host = $_SERVER['HTTP_HOST'];  //域名
+        $uri = $_SERVER['REQUEST_URI']; //路由参数
         if(!empty($req)){
             $result = file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WECHAT_APPID').'&secret='.env('SECRET').'&code='.$req['code'].'&grant_type=authorization_code');
             $re = json_decode($result,1);
@@ -45,27 +46,25 @@ class AdminController extends Controller
             $wechat_user_info=json_decode($user_info,1);
             return view('nine.accout',['openid'=>$wechat_user_info['openid'],'nickname'=>$wechat_user_info['nickname']]);
         }else{
-            $redirect_uri =  env('APP_URL').'/nine/accout';
-            $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.urlencode($redirect_uri).'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+            $redirect_uri = urlencode("http://".$host.$uri);
+            $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
             header('Location:'.$url);
         }
     }
+//    绑定账号执行
     public function accout_do()
     {
         $data=request()->except('_token');
         $res=DB::table('nine')->where(['name'=>$data['name']])->first();
         if($res){
             if($data['pwd']==$res->pwd){
-
                 DB::table('nine')->where('id','=',$res->id)->update([
                     'openid'=>$data['openid'],
                     'nickname'=>$data['nickname']
                 ]);
-
             }
         }
     }
-
 //    发送验证码
     public function send()
     {
@@ -75,6 +74,7 @@ class AdminController extends Controller
             if($data['pwd']==$res->pwd){
                 $code=rand(0000,9999);
                 $url='https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.$this->tools->get_wechat_access_token();
+                request()->session()->put($res->openid,$code,300);
                 $data=[
                     'touser'=>$res->openid,
                     'template_id'=>'tSC9d2d7n-vgTFpk1ugENR280FPNG1AT4GwZhYOcoQw',

@@ -34,7 +34,7 @@
             <div class="form-group">
                 <input type="password" name="pwd" class="form-control" placeholder="密码" required="">
             </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+            <button type="submit" class="btn btn-primary block full-width m-b">绑定账号</button>
         </form>
     </div>
 </div>
