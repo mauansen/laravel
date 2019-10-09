@@ -11,6 +11,7 @@ Route::prefix('nine')->group(function (){
     Route::post('accout_do','admin\AdminController@accout_do');
     Route::get('sweep','admin\AdminController@sweep');
     Route::get('code','admin\AdminController@code');
+    Route::get('openid','admin\AdminController@openid');
 });
 //
 /*

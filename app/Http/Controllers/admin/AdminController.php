@@ -36,7 +36,7 @@ class AdminController extends Controller
             return redirect('nine/login');
         }
     }
-//    绑定账号
+//    获取openid
     public function accout()
     {
         $req = request()->all();
@@ -105,7 +105,7 @@ class AdminController extends Controller
         $url="http://www.mayansen.cn/nine/code?id=".$id;
         return view('nine/image',['url'=>$url,'id'>$id]);
     }
-//    获取openid
+    //    获取openid
     public function openid()
     {
         $req = request()->all();
