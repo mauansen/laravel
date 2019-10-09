@@ -101,9 +101,9 @@ class AdminController extends Controller
 //    扫码登陆
     public function sweep()
     {
-        $id=rand(0000,9999);
+        $id= rand(0000,9999);
         $url="http://www.mayansen.cn/nine/code?id=".$id;
-        return view('nine/image',['url'=>$url,'id'>$id]);
+        return view('nine/image',['url'=>$url,'id'=>$id]);
     }
     //    获取openid
     public function openid()
