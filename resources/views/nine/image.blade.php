@@ -5,11 +5,6 @@
 @endsection
 
 @section('content')
-    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css?v=4.1.0" rel="stylesheet">
     <center>
     <div>
 
@@ -19,4 +14,22 @@
     <h3>欢迎使用 hAdmin</h3>
         <img src="http://qr.liantu.com/api.php?text={{$url}}"/>
     </center>
+    <script>
+        var t= setInterval("check()",2000);
+        var id = {{$id}};
+        function check() {
+            $.ajax({
+                url:"{{url('nine/code')}}",
+                data:{id:id},
+                dataType:'json',
+                success:function(res){
+                    if(res.ret==1){
+                        clearInterval(t);
+                        alert(res.msg);
+                        location.href="{{url('nine/index')}}"
+                    }
+                }
+            })
+        }
+    </script>
 @endsection

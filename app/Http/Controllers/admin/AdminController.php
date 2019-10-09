@@ -128,7 +128,11 @@ class AdminController extends Controller
     {
         $id=request()->input('id');
         $openid=$this->openid();
-        dd($openid);
+        if(!$openid==""){
+            return json_encode(['ret'=>0,'msg'=>'未扫码']);
+        }
+        return json_encode(['ret'=>1,'msg'=>'扫码成功']);
+        request()->session()-set('');
     }
     /*
     后台主页
