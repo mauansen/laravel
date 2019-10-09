@@ -12,6 +12,7 @@ Route::prefix('nine')->group(function (){
     Route::get('sweep','admin\AdminController@sweep');
     Route::get('code','admin\AdminController@code');
     Route::get('openid','admin\AdminController@openid');
+    Route::get('checkLogin','admin\AdminController@checkLogin');
 });
 //
 /*

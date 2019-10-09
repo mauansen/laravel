@@ -19,7 +19,7 @@
         var id = {{$id}};
         function check() {
             $.ajax({
-                url:"{{url('nine/code')}}",
+                url:"{{url('nine/checkLogin')}}",
                 data:{id:id},
                 dataType:'json',
                 success:function(res){
