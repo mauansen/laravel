@@ -9,6 +9,7 @@ Route::prefix('nine')->group(function (){
     Route::get('send','admin\AdminController@send');
     Route::get('accout','admin\AdminController@accout');
     Route::post('accout_do','admin\AdminController@accout_do');
+    Route::get('sweep','admin\AdminController@sweep');
 });
 //
 /*

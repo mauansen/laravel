@@ -90,12 +90,24 @@ class AdminController extends Controller
                     ]
                 ];
                 $this->tools->curl_post($url,json_encode($data));
+                return json_encode(['msg'=>'已发送验证码']);
             }else{
                 return json_encode(['msg'=>'账号或密码错误']);
             }
         }else{
             return json_encode(['msg'=>'账号或密码错误']);
         }
+    }
+//    扫码登陆
+    public function sweep()
+    {
+        $id=rand(0000,9999);
+        $url="http://www.mayansen.cn/nine/code?id=".$id;
+        return view('nine/image',['url'=>$url,'id'>$id]);
+    }
+    public function code()
+    {
+        dd(request()->all());
     }
     /*
     后台主页

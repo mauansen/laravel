@@ -41,7 +41,6 @@
                 <input type="text" name="code" class="form-control" placeholder="验证码" required="">
             </div>
             <input type="button" class="btn btn-primary block full-width m-b code" value="获取验证码" required="">
-
             <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
             <div>
                 登陆请先扫码关注
@@ -52,12 +51,17 @@
             </p>
 
         </form>
+        <button class="btn btn-primary block full-width m-b sweep">扫码登陆</button>
+
     </div>
 </div>
 <!-- 全局js -->
 <script src="js/jquery.min.js?v=2.1.4"></script>
 <script src="js/bootstrap.min.js?v=3.3.6"></script>
 <script>
+    $('.sweep').click(function () {
+        window.location.href="{{url('nine/sweep')}}";
+    });
     $('.code').click(function(){
         var name=$('[name="name"]').val();
         var pwd=$('[name="pwd"]').val();
