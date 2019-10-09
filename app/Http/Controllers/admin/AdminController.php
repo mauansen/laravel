@@ -108,12 +108,11 @@ class AdminController extends Controller
     //    获取openid
     public function openid()
     {
-        $req = request()->all();
+        $req = request()->input('code');
         $host = $_SERVER['HTTP_HOST'];  //域名
         $uri = $_SERVER['REQUEST_URI']; //路由参数
         if(!empty($req)){
-            dd($req);
-            $result = file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WECHAT_APPID').'&secret='.env('SECRET').'&code='.$req['code'].'&grant_type=authorization_code');
+            $result = file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WECHAT_APPID').'&secret='.env('SECRET').'&code='.$req.'&grant_type=authorization_code');
             $re = json_decode($result,1);
             $user_info=file_get_contents('https://api.weixin.qq.com/sns/userinfo?access_token='.$re['access_token'].'&openid='.$re['openid'].'&lang=zh_CN');
             $wechat_user_info=json_decode($user_info,1);
@@ -127,7 +126,7 @@ class AdminController extends Controller
 //    扫码登陆记录openid
     public function code()
     {
-        $id=request()->all();
+        $id=request()->input('id');
         $openid=$this->openid();
         dd($openid);
     }
