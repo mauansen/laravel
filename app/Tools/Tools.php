@@ -75,6 +75,24 @@ class Tools {
             return $re['ticket'];
         }
     }
+//    获取openid
+    public function openid()
+    {
+        $req = request()->all();
+        $host = $_SERVER['HTTP_HOST'];  //域名
+        $uri = $_SERVER['REQUEST_URI']; //路由参数
+        if(!empty($req)){
+            $result = file_get_contents('https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WECHAT_APPID').'&secret='.env('SECRET').'&code='.$req['code'].'&grant_type=authorization_code');
+            $re = json_decode($result,1);
+            $user_info = file_get_contents('https://api.weixin.qq.com/sns/userinfo?access_token='.$re['access_token'].'&openid='.$re['openid'].'&lang=zh_CN');
+            $wechat_user_info=json_decode($user_info,1);
+            return $wechat_user_info;
+        }else{
+            $redirect_uri = urlencode("http://".$host.$uri);
+            $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAT_APPID').'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+            header('Location:'.$url);
+        }
+    }
     public static function getOpenid()
     {
         //echo 1;die;

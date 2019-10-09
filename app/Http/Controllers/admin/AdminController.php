@@ -107,7 +107,9 @@ class AdminController extends Controller
     }
     public function code()
     {
-        dd(request()->all());
+        $id=request()->all();
+        $openid=$this->tools->openid();
+        dd($openid);
     }
     /*
     后台主页
