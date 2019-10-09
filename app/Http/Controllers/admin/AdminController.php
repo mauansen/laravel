@@ -105,5 +105,11 @@ class AdminController extends Controller
     {
         return view('nine.index_v1');
     }
+//   练习试图
+    public function lian()
+    {
+
+    }
+
 
 }
