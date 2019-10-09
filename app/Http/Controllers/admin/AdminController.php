@@ -23,6 +23,9 @@ class AdminController extends Controller
         $data=request()->except('_token');
         $res=DB::table('nine')->where(['name'=>$data['name']])->first();
         $code=request()->session()->get($res->openid);
+        if($data['code']==""){
+            return redirect('nine/login');
+        }
         if($res && $data['code'] ==$code){
             if($data['pwd']==$res->pwd){
                 return redirect('nine/index');
@@ -64,6 +67,7 @@ class AdminController extends Controller
                 ]);
             }
         }
+        return redirect('nine/login');
     }
 //    发送验证码
     public function send()
