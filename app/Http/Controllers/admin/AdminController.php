@@ -128,14 +128,14 @@ class AdminController extends Controller
     {
         $id=request()->input('id');
         $openid=$this->openid();
-        $this->tools->redis->set('wechat'.$id,$openid,7200);  //加入缓存
+        $this->tools->redis->set('openid'.$id,$openid,10);  //加入缓存
         return "扫码登陆成功";
     }
     public function checkLogin()
     {
         $id=request()->input('id');
-        $openid=$this->tools->redis->get('wechat'.$id);  //加入缓存
-        if(!$openid==""){
+        $openid=$this->tools->redis->get('openid'.$id);  //加入缓存
+        if($openid==""){
             return json_encode(['ret'=>0,'msg'=>'未扫码']);
         }
         return json_encode(['ret'=>1,'msg'=>'扫码成功']);
