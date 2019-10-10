@@ -129,6 +129,7 @@ class AdminController extends Controller
         $id=request()->input('id');
         $openid=$this->openid();
         $this->tools->redis->set('wechat'.$id,$openid,7200);  //加入缓存
+        return "扫码登陆成功";
     }
     public function checkLogin()
     {
