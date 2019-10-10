@@ -128,13 +128,12 @@ class AdminController extends Controller
     {
         $id=request()->input('id');
         $openid=$this->openid();
-        request()->session()->put($openid,$openid);
+        request()->session()->put($id,$openid);
     }
     public function checkLogin()
     {
         $id=request()->input('id');
-        $openid=request()->session()->get($openid,$openid,10);
-
+        $openid=request()->session()->get($id);
         if(!$openid==""){
             return json_encode(['ret'=>0,'msg'=>'未扫码']);
         }

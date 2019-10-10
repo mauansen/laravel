@@ -16,7 +16,7 @@
     </center>
     <script>
         var t= setInterval("check()",2000);
-        var id = {{$id}};
+        var id ={{$id}};
         function check() {
             $.ajax({
                 url:"{{url('nine/checkLogin')}}",
