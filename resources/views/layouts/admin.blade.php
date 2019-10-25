@@ -10,6 +10,7 @@
     <link href="css/style.css?v=4.1.0" rel="stylesheet">
     <script src="js/jquery.min.js?v=2.1.4"></script>
     <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <script type="text/javascript" src='/js/index.js'></script>
 </head>
 <body>
 <div class="container">

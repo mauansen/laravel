@@ -1,10 +1,42 @@
 <?php
 //第九个月接口
+//前台登陆
+Route::get('api/goods_show','api\GoodsController@index')->middleware('apilogin');//商品热销页面
+Route::get('api/goods_details/{goods_id}','api\GoodsController@goods_details')->middleware('apilogin');//商品详情页面
+Route::prefix('api')->middleware('apilogin')->group(function (){
+    Route::get('token','admin\UserController@token');//token
+    Route::get('login','admin\UserController@login');//拥有登陆
+    Route::middleware('token')->group(function (){//验证token的中间件
+        Route::get('cart','api\GoodsController@cart');//加入购物车
+        Route::get('cart_show','api\GoodsController@cart_show');//购物车列表
+    });
+});
+Route::get('api/examine','api\InterfaceContrroller@examine');//测试
 //后台登陆
-Route::get('nine/login','admin\AdminController@login');
-Route::post('nine/login_int','admin\AdminController@login_int');
+Route::get('nine/login','admin\AdminController@login');//后台登陆页面
+Route::post('nine/login_int','admin\AdminController@login_int');//后台登陆执行
 Route::prefix('nine')->group(function (){
-    Route::get('index','admin\AdminController@index');
+    Route::get('index','admin\AdminController@index');//后台主页
+    Route::get('goods_save','admin\GoodsController@goods_save');//商品添加
+    Route::post('goods_stock_save_do','admin\GoodsController@goods_stock_save_do');//货品添加
+    Route::get('goods_stock_save/{goods_id}','admin\GoodsController@goods_stock_save');//商品库存添加
+    Route::post('goods_save_do','admin\GoodsController@goods_save_do');//商品添加执行
+    Route::get('goods_show','admin\GoodsController@goods_show');//商品展示
+    Route::get('goods_that','admin\GoodsController@goods_that');//商品名称及点击该
+    Route::get('stock_run','admin\GoodsController@stock_run');//商品库存管理
+    Route::get('cate_show','admin\CateControoler@cate_show');//分类展示
+    Route::get('cate_save','admin\CateControoler@cate_save');//分类添加
+    Route::post('cate_save_do','admin\CateControoler@cate_save_do');//分类添加执行
+    Route::get('only','admin\CateControoler@only');//分类唯一性
+    Route::get('type_save','admin\TypeController@type_save');//类型添加
+    Route::post('type_save_do','admin\TypeController@type_save_do');//类型添加执行
+    Route::get('type_show','admin\TypeController@type_show');//类型展示
+    Route::get('attr_save','admin\AttrController@attr_save');//属性添加
+    Route::get('attr_show','admin\AttrController@attr_show');//属性展示
+    Route::get('type_attr_show','admin\AttrController@type_attr_show');//类型下的属性展示
+    Route::post('attr_save_do','admin\AttrController@attr_save_do');//属性添加执行
+    Route::get('type_attr','admin\TypeController@type_attr');//获取类型下的属性
+
     Route::get('index_v1','admin\AdminController@index_v1');
     Route::get('send','admin\AdminController@send');
     Route::get('accout','admin\AdminController@accout');
@@ -14,6 +46,36 @@ Route::prefix('nine')->group(function (){
     Route::get('openid','admin\AdminController@openid');
     Route::get('checkLogin','admin\AdminController@checkLogin');
 });
+//restful风格
+//Route::resource('api/user', 'api\PostController');
+//Route::resource('api/goods', 'api\GoodsController');
+//商品添加
+Route::get('goods/save',function (){
+    return view('goods.save');
+});
+//商品展示
+Route::get('goods/goods_show',function (){
+    return view('goods.goods_show');
+});
+//前端
+Route::get('nine/apiadd',function (){
+    return view('nine.apiadd');
+});
+Route::get('nine/show',function (){
+    return view('nine.show');
+});
+Route::get('nine/update',function (){
+    return view('nine.update');
+});
+//接口
+//Route::prefix('api')->group(function (){
+//   Route::get('add','api\InterfaceContrroller@save');
+//   Route::get('show','api\InterfaceContrroller@show');
+//   Route::get('del','api\InterfaceContrroller@del');
+//   Route::get('update','api\InterfaceContrroller@update');
+//   Route::get('update_do','api\InterfaceContrroller@update_do');
+//});
+
 //
 /*
 |--------------------------------------------------------------------------

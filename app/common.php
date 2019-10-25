@@ -1,8 +1,9 @@
 <?php
-function CreateTree($data,$parent_id=0,$level=1){
-    //1.定义一个容器（新数组）
-    static $new_arr=[];
-    //2.遍历数据一条条显示
+
+    function CreateTree($data,$parent_id=0,$level=1){
+        //1.定义一个容器（新数组）
+        static $new_arr=[];
+        //2.遍历数据一条条显示
         foreach($data as $k=>$v){
             //3.parent_id=0的
             if($v->parent_id==$parent_id){
@@ -11,7 +12,7 @@ function CreateTree($data,$parent_id=0,$level=1){
                 //4.找到之后放到新数组里
                 $new_arr[]=$v;
                 //调用程序自身找子集
-                CreateTree($data,$v->cid,$level+1);
+                CreateTree($data,$v->cate_id,$level+1);
             }
         }
         return $new_arr;
