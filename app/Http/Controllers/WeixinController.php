@@ -17,7 +17,7 @@ class WeixinController extends Controller
     }
 //清除上线
     public function  clear_api(){
-        $url = 'https://api.weixin.qq.com/cgi-bin/clear_quota?access_token='.$this->tools->tools->get_wechat_access_token();
+        $url = 'https://api.weixin.qq.com/cgi-bin/clear_quota?access_token='.$this->tools->get_wechat_access_token();
         $data = ['appid'=>env('WECHAT_APPID')];
         $this->tools->curl_post($url,json_encode($data));
     }

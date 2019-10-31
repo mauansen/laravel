@@ -7,7 +7,7 @@
     <meta name="Author" contect="http://www.webqin.net">
     <title>三级分销</title>
     <link rel="shortcut icon" href="/index/images/favicon.ico" />
-    
+
     <!-- Bootstrap -->
     <link href="/index/css/bootstrap.min.css" rel="stylesheet">
     <link href="/index/css/style.css" rel="stylesheet">
@@ -43,7 +43,7 @@
        <input type="submit" value="立即注册" />
       </div>
      </form><!--reg-login/-->
-     @include('index/public');
+     @include('index.public');
      </div><!--footNav/-->
     </div><!--maincont-->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -52,7 +52,7 @@
     <script src="/index/js/bootstrap.min.js"></script>
     <script src="/index/js/style.js"></script>
     <script src="/js/jq.js"></script>
-    <script>  
+    <script>
       $('.button').click(function(){
         event.preventDefault();
         // alert(123);

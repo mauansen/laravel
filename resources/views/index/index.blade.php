@@ -7,7 +7,7 @@
     <meta name="Author" contect="http://www.webqin.net">
     <title>三级分销</title>
     <link rel="shortcut icon" href="/index/images/favicon.ico" />
-    
+
     <!-- Bootstrap -->
     <link href="/index/css/bootstrap.min.css" rel="stylesheet">
     <link href="/index/css/style.css" rel="stylesheet">
@@ -50,7 +50,7 @@
        @foreach ($goodshot as $v)
       <img src="{{env ('IMG')}}{{$v->goods_img}}" />
       @endforeach
-     
+
      </div><!--sliderA/-->
      <ul class="pronav">
      @foreach ($cate as $v)
@@ -86,8 +86,8 @@
      </div><!--prolist/-->
      <div class="joins"><a href="fenxiao.html"><img src="/index/images/jrwm.jpg" /></a></div>
      <div class="copyright">Copyright &copy; <span class="blue">这是就是三级分销底部信息</span></div>
-     
-     @include('index/public');
+
+     @include('index.public');
      </div><!--footNav/-->
     </div><!--maincont-->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -11,7 +11,16 @@ Route::prefix('api')->middleware('apilogin')->group(function (){
         Route::get('cart_show','api\GoodsController@cart_show');//购物车列表
     });
 });
+
+//考试
+Route::get('new/new','zuoye\NewController@new');//测试
+
+
 Route::get('api/examine','api\InterfaceContrroller@examine');//测试
+Route::get('class/index','ClassController@index');//数据库处理
+Route::get('class/aes_decrypt','ClassController@aes_decrypt');//加密解密aes
+Route::get('class/rsa','ClassController@rsa');//加密解密rsa
+Route::get('class/new','ClassController@new');//加密解密rsa
 //后台登陆
 Route::get('nine/login','admin\AdminController@login');//后台登陆页面
 Route::post('nine/login_int','admin\AdminController@login_int');//后台登陆执行

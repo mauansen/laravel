@@ -58,6 +58,25 @@ class Tools {
         return $data;
     }
     /**
+     *
+     */
+    public function httpCurl($url,$data=null)
+    {
+        //初始化
+        $ch = curl_init();
+        //设置选项，包括URL
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        if(!empty($data)){
+            curl_setopt($ch,CURLOPT_POST,1);
+            curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
+        }
+        $output = curl_exec($ch);
+        curl_close($ch);
+
+        return $output;
+    }
+    /**
      * jsapi_ticket
      * @return bool|string
      */

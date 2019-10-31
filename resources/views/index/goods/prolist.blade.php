@@ -7,7 +7,7 @@
     <meta name="Author" contect="http://www.webqin.net">
     <title>三级分销</title>
     <link rel="shortcut icon" href="/index/images/favicon.ico" />
-    
+
     <!-- Bootstrap -->
     <link href="/index/css/bootstrap.min.css" rel="stylesheet">
     <link href="/index/css/style.css" rel="stylesheet">
@@ -45,7 +45,7 @@
       </dl>
      @endforeach
      </div><!--prolist/-->
-     @include('index/public');
+     @include('index.public');
     </div><!--maincont-->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>

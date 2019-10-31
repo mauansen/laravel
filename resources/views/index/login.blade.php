@@ -7,7 +7,7 @@
     <meta name="Author" contect="http://www.webqin.net">
     <title>三级分销</title>
     <link rel="shortcut icon" href="/index/images/favicon.ico" />
-    
+
     <!-- Bootstrap -->
     <link href="/index/css/bootstrap.min.css" rel="stylesheet">
     <link href="/index/css/style.css" rel="stylesheet">
@@ -44,7 +44,7 @@
      </form><!--reg-login/-->
         <p>第三方登陆</p>
         <button class="stu">微信登陆</button>
-     @include('index/public');
+     @include('index.public');
      </div><!--footNav/-->
     </div><!--maincont-->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

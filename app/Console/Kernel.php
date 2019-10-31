@@ -27,36 +27,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function(){
-//            $tools=new Tools;
-//            $data=DB::table('wechat_user')->get();
-//            $url='https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.$tools->get_wechat_access_token();
-//            foreach($data as $v){
-//                if($v->or_sign==1){
-//                    $v->or_sign='未签到';
-//                }else{
-//                    $v->or_sign='已签到';
-//                }
-//                $array=[
-//                    'touser'=>$v->open_id,
-//                    'template_id'=>'RUTbQmDdMEk7Y5xUSq10pBLbz2p16KdpiVV5b87Izco',
-//                    'data'=>[
-//                        'first'=>['value'=>'签到提醒'],
-//                        'keyword1'=>['value'=>$v->nickname],
-//                        'keyword2'=>['value'=>$v->or_sign],
-//                        'keyword3'=>['value'=>'1200'],
-//                        'keyword4'=>['value'=>$v->sign_time],
-//                    ]
-//                ];
-//                $tools->curl_post($url,json_encode($array,JSON_UNESCAPED_UNICODE));
-//            }
-//            DB::table('wechat_user')->where(['or_sign'=>2])->update([
-//                'sign'=>'0'
-//            ]);
-//            DB::table('wechat_user')->update([
-//                'or_sign'=>2,
-//                'sign_time'=>'1'
-//            ]);
-//            \Log::info('123');
+            $tools=new Tools;
+            $name="奥巴马";
+            $url="http://api.avatardata.cn/ActNews/Query?key=3c458a7d3ee5421696c4e991b730958f&keyword={$name}";
+            $data=$tools->httpCurl($url);
+            $data=json_decode($data,1);
 
         })->cron('* * * * *');
     }
