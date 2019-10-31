@@ -36,9 +36,12 @@ class NewController extends Controller
             }
 
         }
-        $NewData=NewModel::get()->toArray();
-        Cache::store('redis')->put('NewData',$NewData,60);
+//        $value = Cache::store('redis')->get('NewData');
+        return $data;
+    }
+    public function newIndex()
+    {
         $value = Cache::store('redis')->get('NewData');
-        return $value;
+        return view('zuoye.newindex');
     }
 }
