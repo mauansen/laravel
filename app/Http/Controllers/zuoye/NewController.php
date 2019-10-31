@@ -20,14 +20,14 @@ class NewController extends Controller
         $name=\request()->input('name');
         if(empty($name))
         {
-            return json_encode(['ret'=>0,'msg'=>'请传查询的人']);
+            return json_encode(['ret'=>0,'msg'=>'请传查询的人'],JSON_UNESCAPED_UNICODE);
         }
         $url="http://api.avatardata.cn/ActNews/Query?key=3c458a7d3ee5421696c4e991b730958f&keyword={$name}";
         $data=$this->tools->httpCurl($url);
         $data=json_decode($data,1);
-        if($data['error_code']!='0')
+        if($data['result']==null)
         {
-            return json_encode(['ret'=>0,'msg'=>'查询的没有这个人的新闻']);
+            return json_encode(['ret'=>0,'msg'=>'查询的没有这个人的新闻'],JSON_UNESCAPED_UNICODE);
         }
         foreach ($data['result'] as $v)
         {
