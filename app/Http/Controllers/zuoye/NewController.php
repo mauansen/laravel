@@ -1,13 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\zuoye;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Tools\Tools;
 use App\model\NewModel;
 use Illuminate\Support\Facades\Cache;
-
 class NewController extends Controller
 {
     public $tools;
@@ -42,7 +40,6 @@ class NewController extends Controller
                     'pdate'=>$v['pdate'],
                 ]);
             }
-
         }
         return $data;
     }
