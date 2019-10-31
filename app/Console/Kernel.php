@@ -28,14 +28,13 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function(){
             $tools=new Tools;
-            $url="http://w3.la.cn/new/new?name=奥巴马";
+            $url="http://www.mayansen.cn/new/new?name=奥巴马";
             $data=$tools->httpCurl($url);
             $data=json_decode($data,1);
             $NewData=NewModel::get()->toArray();
             Cache::store('redis')->put('NewData',$NewData,600);
         })->cron('* * * * *');
     }
-
     /**
      * Register the commands for the application.
      *

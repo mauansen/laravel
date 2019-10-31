@@ -24,7 +24,6 @@ class NewController extends Controller
         }
         $url="http://api.avatardata.cn/ActNews/Query?key=3c458a7d3ee5421696c4e991b730958f&keyword={$name}";
         $data=$this->tools->httpCurl($url);
-
         $data=json_decode($data,1);
         if($data['error_code']!='0')
         {
