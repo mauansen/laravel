@@ -13,7 +13,7 @@ Route::prefix('api')->middleware('apilogin')->group(function (){
 });
 
 //考试
-Route::get('new/new','zuoye\NewController@new');//测试
+Route::get('new/new','zuoye\NewController@new')->middleware('apilogin');//测试
 Route::get('new/newIndex','zuoye\NewController@newIndex');//测试
 
 

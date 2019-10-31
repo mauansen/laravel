@@ -27,13 +27,13 @@ class Apilogin
             $num="0";
         }
         //判断用户超过20 怀疑用非法强刷
-        if($num>20)
+        if($num>5)
         {
-            echo json_encode(['ret'=>'0','msg'=>'怀疑您恶意刷新我们接口请稍等'],JSON_UNESCAPED_UNICODE);die;
+            echo json_encode(['ret'=>'0','msg'=>'您一天之能调用5次'],JSON_UNESCAPED_UNICODE);die;
         }
         $num+="1";
 //        存入用户IP跟时间和次数
-        Cache::put($cacheName,$num,50);
+        Cache::put($cacheName,$num,60);
         return $next($request);
     }
 }

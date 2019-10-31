@@ -9,7 +9,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <table>
+<div class="container">
+
+    <table class="table">
         <tr>
             <td>新闻编号</td>
             <td>新闻标题</td>
@@ -18,16 +20,17 @@
             <td>新闻发布网站</td>
             <td>新闻发布多少时间</td>
         </tr>
-
+@foreach($value as $v)
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{$v['new_id']}}</td>
+            <td>{{$v['title']}}</td>
+            <td>{{$v['content']}}</td>
+            <td>{{$v['pdate_src']}}</td>
+            <td>{{$v['src']}}</td>
+            <td>{{$v['pdate']}}</td>
         </tr>
-
+@endforeach
     </table>
+</div>
 </body>
 </html>
