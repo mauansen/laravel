@@ -1,4 +1,25 @@
 <?php
+//=====================考试----
+Route::prefix('music')->group(function () {
+    Route::get('login','Xadmin\AdminController@login');
+    Route::post('login_do','Xadmin\AdminController@login_do');
+    Route::get('add','Xadmin\AdminController@add');
+    Route::get('index','Xadmin\AdminController@index');
+    Route::get('show','Xadmin\AdminController@show');
+    Route::get('code','Xadmin\AdminController@code');
+    Route::get('music_cate','Xadmin\AdminController@music_cate');
+    Route::post('music_cate_do','Xadmin\AdminController@music_cate_do');
+    Route::post('music_add_do','Xadmin\AdminController@music_add_do');
+    Route::get('music_cate_list','Xadmin\AdminController@music_cate_list');
+    Route::get('music_del','Xadmin\AdminController@music_del');
+    Route::get('music_up','Xadmin\AdminController@music_up');
+    Route::post('music_save','Xadmin\AdminController@music_save');
+    Route::get('rotatio_add','Xadmin\AdminController@rotatio_add');//轮播图添加
+    Route::post('rotatio_add_do','Xadmin\AdminController@rotatio_add_do');//轮播图添加
+    Route::get('rotatio_list','Xadmin\AdminController@rotatio_list');//轮播图展示
+    Route::get('rotatio_enable','Xadmin\AdminController@rotatio_enable');//轮播图展示
+});
+//====================考试----
 //第九个月接口
 //前台登陆
 Route::get('api/goods_show','api\GoodsController@index')->middleware('apilogin');//商品热销页面
@@ -15,6 +36,9 @@ Route::prefix('api')->middleware('apilogin')->group(function (){
 //考试
 Route::get('new/new','zuoye\NewController@new')->middleware('apilogin');//测试
 Route::get('new/newIndex','zuoye\NewController@newIndex')->middleware('apilogin');//测试
+Route::get('new/image','zuoye\NewController@image');//测试
+Route::get('new/search','zuoye\NewController@search');//测试
+Route::get('new/QiniuToken','zuoye\NewController@QiniuToken');//测试
 
 
 Route::get('api/examine','api\InterfaceContrroller@examine');//测试

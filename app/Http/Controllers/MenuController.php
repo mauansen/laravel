@@ -86,8 +86,8 @@ class MenuController extends Controller
             }
             $data['button'][] = $arr;
         }
-        $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token=' . $this->tools->get_wechat_access_token();
-        $res = $this->tools->curl_post($url, json_encode($data, JSON_UNESCAPED_UNICODE));
+        $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$this->tools->get_wechat_access_token();
+        $res = $this->tools->curl_post($url, json_encode($data,JSON_UNESCAPED_UNICODE));
     }
 //微信删除一个菜单
     public function menu_del()

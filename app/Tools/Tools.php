@@ -126,4 +126,19 @@ class Tools {
             //如果是非静默授权 再通过openid  access_token获取用户信息
         }
     }
+    //模仿form表单上传
+    public function curl_from($url,$data)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HEADER, false);//忽略头信息
+        curl_setopt($ch, CURLOPT_POST, true);//启用时会发送一个常规的POST请求，类型为：application/x-www-form-urlencoded，就像表单提交的一样。
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);//不直接输出返回值
+        curl_setopt($ch, CURLOPT_BINARYTRANSFER,true);//上传成功后取得返回值而不是只返回上传是否成功
+        curl_setopt($ch, CURLOPT_POSTFIELDS,$data);//上传数据信息
+        curl_setopt($ch, CURLOPT_URL, $url);//上传地址
+        $info= curl_exec($ch);
+        curl_close($ch);
+        return $info;
+    }
+
 }

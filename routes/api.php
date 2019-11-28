@@ -16,5 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::any('muisc','api\AdminController@muisc');
+Route::any('rotation','api\AdminController@rotation');
+Route::any('cate','api\AdminController@cate');
 //接口
 Route::any('envet','PortController@envet');
