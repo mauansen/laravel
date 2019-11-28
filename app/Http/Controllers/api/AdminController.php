@@ -43,4 +43,10 @@ class AdminController extends Controller
         $data=Music_cateModel::get();
         return json_encode($data,JSON_UNESCAPED_UNICODE);
     }
+    public function cate_name()
+    {
+        $id=\request()->input('value');
+        $data=MusicModel::where(['music_cate_id'=>$id])->get();
+        return json_encode($data,JSON_UNESCAPED_UNICODE);
+    }
 }

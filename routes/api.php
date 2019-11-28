@@ -19,5 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::any('muisc','api\AdminController@muisc');
 Route::any('rotation','api\AdminController@rotation');
 Route::any('cate','api\AdminController@cate');
+Route::any('cate_name','api\AdminController@cate_name');
 //接口
 Route::any('envet','PortController@envet');
