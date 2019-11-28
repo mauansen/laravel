@@ -25,13 +25,19 @@ class AdminController extends Controller
     public function muisc()
     {
         $name=\request()->input('value');
+//        $where=[];
+//        if($name!="")
+//        {
+//            $where[]=['music_name','like',"%$name%"];
+//        }
         $where=[];
+        $orwhere=[];
         if($name!="")
         {
-            $where[]=['music_name','like',"%$name%"];
             $where[]=['music_singer','like',"%$name%"];
+            $orwhere[]=['music_name','like',"%$name%"];
         }
-        $data=MusicModel::where($where)->get();
+        $data=MusicModel::where($where)->orWhere($orwhere)->get();
         return json_encode($data,JSON_UNESCAPED_UNICODE);
     }
     public function rotation()
