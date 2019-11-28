@@ -29,6 +29,7 @@ class AdminController extends Controller
         if($name!="")
         {
             $where[]=['music_name','like',"%$name%"];
+            $where[]=['music_singer','like',"%$name%"];
         }
         $data=MusicModel::where($where)->get();
         return json_encode($data,JSON_UNESCAPED_UNICODE);
