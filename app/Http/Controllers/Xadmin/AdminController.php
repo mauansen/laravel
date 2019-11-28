@@ -199,6 +199,15 @@ class AdminController extends Controller
         return view('Xadmin/rotatio_list',['data'=>$data]);
     }
     /*
+     * 轮播图删除
+     */
+    public function rotatio_del()
+    {
+        $id=\request()->input('rotatio_id');
+        RotationModel::where(['rotatio_id'=>$id])->delete();
+        return redirect('music/rotatio_list');
+    }
+    /*
      * 轮播图的启用
      */
     public function rotatio_enable()

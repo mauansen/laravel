@@ -56,4 +56,9 @@ class AdminController extends Controller
         $data=MusicModel::where(['music_cate_id'=>$id])->get();
         return json_encode($data,JSON_UNESCAPED_UNICODE);
     }
+    //去微信调用MP3的音频
+    public function music()
+    {
+
+    }
 }
