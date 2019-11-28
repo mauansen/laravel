@@ -102,8 +102,8 @@ class AdminController extends Controller
      */
     public function show()
     {
-//        return view('Xadmin/music_show');
-        echo "音乐列表";
+        $data=MusicModel::join('music_cate','music.music_cate_id','=','music_cate.cate_id')->get();
+        return view('Xadmin/music_show',['data'=>$data]);
 
     }
     /**
@@ -174,6 +174,7 @@ class AdminController extends Controller
     public function rotatio_add_do()
     {
         $file=curl_file_create(\request()->file('file'));
+        $title=\request()->input('title');
         $url="http://upload-z1.qiniup.com/";
         $token=Qiniu::token();
         $data=[
@@ -185,6 +186,7 @@ class AdminController extends Controller
         RotationModel::insert([
             'rotatio'=>'http://q0j02rf5k.bkt.clouddn.com/'.$img['key'],
             'is_enable'=>'2',
+            'title'=>$title
         ]);
         return redirect('music/rotatio_list');
     }
@@ -207,5 +209,17 @@ class AdminController extends Controller
         ]);
         return redirect('music/rotatio_list');
     }
-
+    public function button()
+    {
+        $postdata['button'][]=[
+            'type'=>'miniprogram',
+            'name'=>'首页',
+            'url' =>'http://mp.weixin.qq.com',
+            'appid'=>'wx73f25e5b5f2bdef3',
+            'pagepath'=>'pages/index/index'
+        ];
+        $url="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$this->tools->get_wechat_access_token();
+        $datas=$this->tools->curl_from($url,json_encode($postdata));
+        dd(json_decode($datas,1));
+    }
 }

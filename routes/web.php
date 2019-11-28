@@ -18,6 +18,7 @@ Route::prefix('music')->group(function () {
     Route::post('rotatio_add_do','Xadmin\AdminController@rotatio_add_do');//轮播图添加
     Route::get('rotatio_list','Xadmin\AdminController@rotatio_list');//轮播图展示
     Route::get('rotatio_enable','Xadmin\AdminController@rotatio_enable');//轮播图展示
+    Route::get('button','Xadmin\AdminController@button');//轮播图展示
 });
 //====================考试----
 //第九个月接口

@@ -16,7 +16,7 @@
             <tr>
                 <td><img src="{{$v->rotatio}}" alt="" width="40"></td>
                 <td>
-                    <a class="btn btn-danger" >删除</a>
+                    <a class="btn btn-danger" href="{{url('music/rotatio_del')}}?rotatio_id={{$v->rotatio_id}}}" >删除</a>
                     <a href="{{url('music/rotatio_enable')}}?rotatio_id={{$v->rotatio_id}}}" class="btn btn-info">启用</a>
                     <a class="btn btn-warning">修改</a>
                 </td>
