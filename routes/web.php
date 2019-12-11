@@ -1,4 +1,9 @@
 <?php
+//=================直播
+Route::prefix('swoole')->group(function (){
+    Route::get('index','SwooleController@index');
+});
+//=================直播
 //=====================考试----
 Route::prefix('music')->group(function () {
     Route::get('login','Xadmin\AdminController@login');
@@ -15,7 +20,7 @@ Route::prefix('music')->group(function () {
     Route::get('music_up','Xadmin\AdminController@music_up');
     Route::post('music_save','Xadmin\AdminController@music_save');
     Route::get('rotatio_add','Xadmin\AdminController@rotatio_add');//轮播图添加
-    Route::post('rotatio_add_do','Xadmin\AdminController@rotatio_add_do');//轮播图添加
+    Route::get('rotatio_add_do','Xadmin\AdminController@rotatio_add_do');//轮播图添加
     Route::get('rotatio_list','Xadmin\AdminController@rotatio_list');//轮播图展示
     Route::get('rotatio_del','Xadmin\AdminController@rotatio_del');//轮播图删除
     Route::get('rotatio_enable','Xadmin\AdminController@rotatio_enable');//轮播图展示

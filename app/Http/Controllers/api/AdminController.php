@@ -14,6 +14,7 @@ use App\Tools\Qiniu;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Storage;
 use App\model\Xadmin\MusicModel;
+use DB;
 
 class AdminController extends Controller
 {
@@ -37,12 +38,12 @@ class AdminController extends Controller
             $where[]=['music_singer','like',"%$name%"];
             $orwhere[]=['music_name','like',"%$name%"];
         }
-        $data=MusicModel::where($where)->orWhere($orwhere)->get();
+        $data=MusicModel::join('rotatio','rotatio.music_id','=','music.music_id')->where($where)->orWhere($orwhere)->get();
         return json_encode($data,JSON_UNESCAPED_UNICODE);
     }
     public function rotation()
     {
-        $data=RotationModel::where(['is_enable'=>1])->get();
+        $data=DB::table('rotatio')->join('music','rotatio.music_id','=','music.music_id')->where(['is_enable'=>1])->get();
         return json_encode($data,JSON_UNESCAPED_UNICODE);
     }
     public function cate()
@@ -53,12 +54,13 @@ class AdminController extends Controller
     public function cate_name()
     {
         $id=\request()->input('value');
-        $data=MusicModel::where(['music_cate_id'=>$id])->get();
+        $data=MusicModel::join('rotatio','rotatio.music_id','=','music.music_id')->where(['music_cate_id'=>$id])->get();
         return json_encode($data,JSON_UNESCAPED_UNICODE);
     }
     //去微信调用MP3的音频
     public function music()
     {
+        $id=\request()->input('id');
 
     }
 }

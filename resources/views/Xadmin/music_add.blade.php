@@ -29,6 +29,10 @@
             <label for="exampleInputFile">音乐</label>
             <input name="music" type="file" id="exampleInputFile">
         </div>
+        <div class="form-group">
+            <label for="exampleInputFile">轮播图片</label>
+            <input name="file" type="file" id="exampleInputFile">
+        </div>
         <button type="submit" class="btn btn-default">上传</button>
     </form>
 

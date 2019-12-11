@@ -64,11 +64,6 @@
                             <cite>音乐分类列表</cite></a>
                     </li>
                     <li>
-                        <a onclick="xadmin.add_tab('轮播图添加','{{url ("music/rotatio_add")}}')">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>轮播图添加</cite></a>
-                    </li>
-                    <li>
                         <a onclick="xadmin.add_tab('轮播图展示','{{url ("music/rotatio_list")}}')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>轮播图展示</cite></a>

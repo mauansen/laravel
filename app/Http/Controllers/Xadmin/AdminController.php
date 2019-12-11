@@ -90,12 +90,15 @@ class AdminController extends Controller
         $result=$this->tools->client_upload($url,$paths,$client);
         $media_id=json_decode($result,1);
         $music=$media_id['media_id'];
-        MusicModel::insert([
+        $id=MusicModel::insertGetId([
             'music_name'=>$data['music_name'],
             'music_singer'=>$data['music_singer'],
             'music_cate_id'=>$data['music_cate_name'],
-            'music'=>$music
+            'music'=>$music,
+            'path'=>'http://w3.la.cn'.$storage_path
         ]);
+        $a=$this->rotatio_add_do(curl_file_create($data['file']),$id);
+        return redirect('music/show');
     }
     /*
      * 音乐列表
@@ -166,15 +169,15 @@ class AdminController extends Controller
     /*
      * 轮播图添加
      */
-    public function rotatio_add()
+//    public function rotatio_add()
+//    {
+//
+//        return view('Xadmin/rotatio_add');
+//    }
+    public function rotatio_add_do($file,$id)
     {
-
-        return view('Xadmin/rotatio_add');
-    }
-    public function rotatio_add_do()
-    {
-        $file=curl_file_create(\request()->file('file'));
-        $title=\request()->input('title');
+//        $file=curl_file_create(\request()->file('file'));
+//        $title=\request()->input('title');
         $url="http://upload-z1.qiniup.com/";
         $token=Qiniu::token();
         $data=[
@@ -186,16 +189,15 @@ class AdminController extends Controller
         RotationModel::insert([
             'rotatio'=>'http://q0j02rf5k.bkt.clouddn.com/'.$img['key'],
             'is_enable'=>'2',
-            'title'=>$title
+            'music_id'=>$id
         ]);
-        return redirect('music/rotatio_list');
     }
     /*
      * 轮播图展示
      */
     public function rotatio_list()
     {
-        $data=RotationModel::get();
+        $data=RotationModel::where(['is_enable'=>1])->get();
         return view('Xadmin/rotatio_list',['data'=>$data]);
     }
     /*
@@ -204,7 +206,9 @@ class AdminController extends Controller
     public function rotatio_del()
     {
         $id=\request()->input('rotatio_id');
-        RotationModel::where(['rotatio_id'=>$id])->delete();
+        RotationModel::where(['rotatio_id'=>$id])->update([
+            'is_enable'=>2
+        ]);
         return redirect('music/rotatio_list');
     }
     /*
