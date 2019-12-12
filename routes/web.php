@@ -2,6 +2,8 @@
 //=================直播
 Route::prefix('swoole')->group(function (){
     Route::get('index','SwooleController@index');
+    Route::get('login','SwooleController@login');
+    Route::post('login_do','SwooleController@login_do');
 });
 //=================直播
 //=====================考试----
