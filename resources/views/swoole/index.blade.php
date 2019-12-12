@@ -15,14 +15,19 @@
     <script>
         if(window.WebSocket){
             var ws=new WebSocket('ws://swoole.mayansen.cn:9501');
-            console.log(ws);
+            ws.onopen=function(event){
+                var json = '{"type":"login","content":"{{$res}}"}';
+                ws.send(json);
+            }
             ws.onmessage=  function (event) {
                 var msg=event.data;
-                $('#msg').append("<p>"+msg+"</p>");
+                $('#msg').append(msg);
+                console.log(event);
             }
             $(document).on('click','#but',function () {
                 var content=$('.form-control').val();
-                ws.send(content);
+                var userss='{"type":"talk","content":"'+content+'"}';
+                ws.send(userss);
             })
         }
         $(document).on('click','#login',function () {
