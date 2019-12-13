@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    LOL聊天室
+    dnf聊天室
 @endsection
 @section('content')
     <div style=" height:50px;"></div>
@@ -13,7 +13,7 @@
     <button class="form-control" style="background-color: #00A1FF" id="but">发表评论</button>
     <script>
         if(window.WebSocket){
-            var ws=new WebSocket('ws://swoole.mayansen.cn:8000');
+            var ws=new WebSocket('ws://swoole.mayansen.cn:8002');
             ws.onopen=function(event){
                 var json = '{"type":"login","username":"{{$res}}"}';
                 ws.send(json);

@@ -1,8 +1,12 @@
 <?php
 //=================直播
 Route::prefix('swoole')->group(function (){
-    Route::get('index','SwooleController@index');
+    Route::get('index/{res}','SwooleController@index');
+    Route::get('dnf/{res}','SwooleController@dnf');
+    Route::get('cf/{res}','SwooleController@cf');
     Route::get('login','SwooleController@login');
+    Route::get('register','SwooleController@register');
+    Route::post('register_do','SwooleController@register_do');
     Route::post('login_do','SwooleController@login_do');
 });
 //=================直播
