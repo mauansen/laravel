@@ -5,8 +5,12 @@ Route::prefix('swoole')->group(function (){
     Route::get('dnf/{res}','SwooleController@dnf');
     Route::get('cf/{res}','SwooleController@cf');
     Route::get('login','SwooleController@login');
+    Route::get('zhi','SwooleController@zhi');
     Route::get('register','SwooleController@register');
+    Route::get('apply/{username}','SwooleController@apply');
+    Route::get('apply_list','SwooleController@apply');
     Route::post('register_do','SwooleController@register_do');
+    Route::post('apply_do','SwooleController@apply_do');
     Route::post('login_do','SwooleController@login_do');
 });
 //=================直播

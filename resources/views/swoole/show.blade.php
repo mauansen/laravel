@@ -5,7 +5,9 @@
 
 @section('content')
     <div style=" height:50px;"></div>
-    <div style=" height:50px;"><h2 align="center">聊天室列表</h2></div>
+    <div style=" height:50px;"><h2 align="center">聊天室列表</h2><h2 align="center"><a href="{{url ('swoole/apply/'.$username)}}">申请聊天室</a></h2></div>
+    <div style=" height:50px;"></div>
+    <div style=" height:50px;"></div>
     <table class="table">
         <tr>
             <td>LOL</td>

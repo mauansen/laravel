@@ -55,4 +55,41 @@ class SwooleController extends Controller
         }
 
     }
+    /**
+     * 申请聊天室
+     */
+    public function apply($username)
+    {
+        return view('swoole/apply',['username'=>$username]);
+    }
+    public function apply_do()
+    {
+        $post=\request()->except('_token');
+//        dd($post);
+        $res=DB::table('apply')->insert([
+            'apply'=>$post['apply'],
+            'identification'=>1
+        ]);
+        if ($res)
+        {
+            return view('swoole/show',['username'=>$post['username']]);
+        }else{
+            return view('swoole/show',['username'=>$post['username']]);
+        }
+    }
+    /*
+     * 申请列表
+     */
+    public function apply_list()
+    {
+        $data=DB::table('apply')->where(['identification'=>1])->get();
+        return view('swoole/apply_list',['data'=>$data]);
+    }
+    /*
+     * 直播
+     */
+    public function zhi()
+    {
+        return view('swoole/zhi');
+    }
 }
